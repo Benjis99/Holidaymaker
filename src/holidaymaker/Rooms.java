@@ -8,7 +8,7 @@ public class Rooms {
 
     public void getAllEmptyRoomsFullboard(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Rooms");
+            statement = connect.prepareStatement(" SELECT * FROM RoomsFullboard");
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -23,6 +23,10 @@ public class Rooms {
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
+                        " Distance beach: " + resultSets.getString("Beach") + "km\n" +
+                        " Distance city: " + resultSets.getString("CityDS") + "km\n" +
+                        " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
+                        " Price: " + resultSets.getString("Price") + "\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -48,6 +52,10 @@ public class Rooms {
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
+                        " Distance beach: " + resultSets.getString("Beach") + "km\n" +
+                        " Distance city: " + resultSets.getString("CityDS") + "km\n" +
+                        " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
+                        " Price: " + resultSets.getString("Price") + "\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -73,6 +81,10 @@ public class Rooms {
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
+                        " Distance beach: " + resultSets.getString("Beach") + "km\n" +
+                        " Distance city: " + resultSets.getString("CityDS") + "km\n" +
+                        " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
+                        " Price: " + resultSets.getString("Price") + "\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -99,6 +111,8 @@ public class Rooms {
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
+                        " Bed-Size: " + resultSets.getString("BedSize") + "km\n" +
+                        " Price: " + resultSets.getString("Price") + "km\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }

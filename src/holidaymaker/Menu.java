@@ -24,13 +24,13 @@ public class Menu {
         boolean running = true;
         while (running){
             System.out.println("Welcome! Please, choose an option: ");
-            System.out.println("[1] Register a customer. ");
-            System.out.println("[2] Delete a customer. ");
-            System.out.println("[3] Search rooms and make a reservation");
-            System.out.println("[4] Change, delete or update a booking.");
-            System.out.println("[5] See all bookings ");
-            System.out.println("[6] All Registered Users ");
-            System.out.println("[7] Exit");
+            System.out.println("|1| Register a customer. ");
+            System.out.println("|2| Delete a customer. ");
+            System.out.println("|3| Search rooms and make a reservation");
+            System.out.println("|4| Change, delete or update a booking.");
+            System.out.println("|5| See all bookings ");
+            System.out.println("|6| All Registered Users ");
+            System.out.println("|7| Exit");
             String userInput = console.nextLine();
             switch (userInput) {
                 case "1":
@@ -70,9 +70,9 @@ public class Menu {
     private void reservationOptions(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
-            System.out.println("[1] Delete Reservation");
-            System.out.println("[2] Update Reservation");
-            System.out.println("[3] Exit to Main Menu");
+            System.out.println("|1| Delete Reservation");
+            System.out.println("|2| Update Reservation");
+            System.out.println("|3| Exit to Main Menu");
             String userInput = console.nextLine();
             switch (userInput) {
                 case "1":
