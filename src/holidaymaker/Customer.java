@@ -103,7 +103,7 @@ public class Customer {
 
     public void printAllCustomers(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         try {
-            statement = connect.prepareStatement("SELECT First_Name, Last_Name, Phone_Number FROM Customer");
+            statement = connect.prepareStatement("SELECT First_Name, Last_Name, Phone_Number, Customer_Id FROM Customer");
             resultSet = statement.executeQuery();
             if (!resultSet.isBeforeFirst()) {
                 System.out.println("There are no registered Customers yet. ");
@@ -111,7 +111,8 @@ public class Customer {
             while (resultSet.next()) {
                 String row = "First Name: " + resultSet.getString("First_Name")
                         + " | Last Name: " + resultSet.getString("Last_Name")
-                        + " | Phone Number: " + resultSet.getString("Phone_Number");
+                        + " | Phone Number: " + resultSet.getString("Phone_Number")
+                        + " | CustomerId: " + resultSet.getString("Customer_Id");
                 System.out.println(row);
                 System.out.println("────────────────────────────────────────────────────────────────────");
             }

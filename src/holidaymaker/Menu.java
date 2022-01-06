@@ -14,6 +14,7 @@ public class Menu {
     private Booking booking = new Booking();
     private Hotel hotel = new Hotel();
     private Rooms rooms = new Rooms();
+    private Company company = new Company();
 
     public Menu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         mainMenu(connect, statement, resultSet);
@@ -25,7 +26,7 @@ public class Menu {
         while (running){
             System.out.println("""
                     Welcome! Please, choose an option:
-                    |1| Register a customer
+                    |1| Register a customer or Company
                     |2| Delete a customer
                     |3| Search rooms and make a reservation
                     |4| Change, delete or update a booking
@@ -35,7 +36,7 @@ public class Menu {
                     |8| Exit""");
             String userInput = console.nextLine();
             switch (userInput) {
-                case "1" -> customer.registerUser(connect, statement, resultSet);
+                case "1" -> registerOrCompany(connect, statement, resultSet);
                 case "2" -> customer.deleteCustomer(connect, statement);
                 case "3" -> searchMenu(connect, statement, resultSet);
                 case "4" -> reservationOptions(connect, statement, resultSet);
@@ -48,6 +49,22 @@ public class Menu {
 
         }
     }
+    private void registerOrCompany(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+        boolean optionsIsRunning = true;
+        while (optionsIsRunning) {
+            System.out.println("|1| Register Customer");
+            System.out.println("|2| Register Company");
+            System.out.println("|3| Exit to Main Menu");
+            String userInput = console.nextLine();
+            switch (userInput) {
+                case "1" -> customer.registerUser(connect, statement, resultSet);
+                case "2" -> company.registerUser(connect, statement, resultSet);
+                case "3" -> optionsIsRunning = false;
+                default -> System.out.println("Please enter a number between 1-3");
+            }
+        }
+    }
+
 
     private void reservationOptions(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
