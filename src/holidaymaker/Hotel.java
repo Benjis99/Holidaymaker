@@ -2,10 +2,9 @@ package holidaymaker;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Scanner;
 
 public class Hotel {
-Scanner console = new Scanner(System.in);
+
     public void getAllReservations(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM AllBookingsPrice");
