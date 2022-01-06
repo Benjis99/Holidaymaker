@@ -33,5 +33,25 @@ Scanner console = new Scanner(System.in);
         }
     }
 
+    public void allHotels(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+        try {
+            statement = connect.prepareStatement(" SELECT * FROM hotelDESC");
+            resultSet = statement.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("There are no hotels in the system yet.");
+            }
+            while (resultSet.next()) {
+                String row = "────────────────────────────────────────────────────────────────────" + "\n" +
+                        " HotelName: " + resultSet.getString("Name") + "\n" +
+                        " City: " + resultSet.getString("City") + "\n" +
+                        " Stars: " + resultSet.getString("Rw") + "/5\n" +
+                        "────────────────────────────────────────────────────────────────────";
+                System.out.println(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

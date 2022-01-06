@@ -23,45 +23,27 @@ public class Menu {
     private void mainMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean running = true;
         while (running){
-            System.out.println("Welcome! Please, choose an option: ");
-            System.out.println("|1| Register a customer. ");
-            System.out.println("|2| Delete a customer. ");
-            System.out.println("|3| Search rooms and make a reservation");
-            System.out.println("|4| Change, delete or update a booking.");
-            System.out.println("|5| See all bookings ");
-            System.out.println("|6| All Registered Users ");
-            System.out.println("|7| Exit");
+            System.out.println("""
+                    Welcome! Please, choose an option:
+                    |1| Register a customer
+                    |2| Delete a customer
+                    |3| Search rooms and make a reservation
+                    |4| Change, delete or update a booking
+                    |5| See all bookings
+                    |6| All Registered Users
+                    |7| All Hotels
+                    |8| Exit""");
             String userInput = console.nextLine();
             switch (userInput) {
-                case "1":
-                    customer.registerUser(connect, statement, resultSet);
-                    break;
+                case "1" -> customer.registerUser(connect, statement, resultSet);
+                case "2" -> customer.deleteCustomer(connect, statement);
+                case "3" -> searchMenu(connect, statement, resultSet);
+                case "4" -> reservationOptions(connect, statement, resultSet);
+                case "5" -> hotel.getAllReservations(connect, statement, resultSet);
+                case "6" -> customer.printAllCustomers(connect, statement, resultSet);
+                case "7" -> hotel.allHotels(connect, statement, resultSet);
+                case "8" -> System.exit(1);
 
-                case "2":
-                    customer.deleteCustomer(connect, statement);
-                    break;
-
-                case "3":
-                    searchMenu(connect, statement, resultSet);
-                    break;
-
-                case "4":
-                    reservationOptions(connect, statement, resultSet);
-                    break;
-
-                case "5":
-                    hotel.getAllReservations(connect, statement, resultSet);
-                    break;
-
-                case "6":
-                    customer.printAllCustomers(connect, statement, resultSet);
-                    break;
-
-
-                case "7":
-                    System.out.println("Bye!");
-                    System.exit(1);
-                    break;
             }
 
         }
@@ -75,21 +57,10 @@ public class Menu {
             System.out.println("|3| Exit to Main Menu");
             String userInput = console.nextLine();
             switch (userInput) {
-                case "1":
-                    booking.deleteBooking(connect, statement, resultSet);
-                    break;
-
-                case "2":
-                    booking.updateReservation(connect, statement, resultSet);
-                    break;
-
-                case "3":
-                    optionsIsRunning = false;
-                    break;
-
-                default:
-                    System.out.println("Please enter a number between 1-3");
-                    break;
+                case "1" -> booking.deleteBooking(connect, statement, resultSet);
+                case "2" -> booking.updateReservation(connect, statement, resultSet);
+                case "3" -> optionsIsRunning = false;
+                default -> System.out.println("Please enter a number between 1-3");
             }
         }
     }
