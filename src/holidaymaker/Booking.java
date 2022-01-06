@@ -26,48 +26,6 @@ public class Booking {
     }
 
 
-
-    private void executeUpdate(Connection connect, PreparedStatement statement, String query, String setValue) {
-        try {
-            statement = connect.prepareStatement(query);
-            statement.setString(1, setValue);
-            statement.executeUpdate();
-            System.out.println("updated successfully!");
-        } catch (Exception e) {
-            System.out.println("There was an error, try again");
-        }
-    }
-
-    private void displayReservation(Connection connect, PreparedStatement statement, ResultSet resultSet) {
-
-        customer.findGuestBookings(connect, statement, resultSet);
-        while (true) {
-            try {
-                System.out.println("Select reservation ID you wish to update ('N': to exit): ");
-                String updateOrExit = console.nextLine();
-                if (updateOrExit.toLowerCase().equals("n")) {
-                    break;
-                } else {
-                    int updateReservation = Integer.parseInt(updateOrExit);
-                    reservationId = updateReservation;
-                    statement = connect.prepareStatement("SELECT * FROM guest_bookings WHERE booking_id = ? ");
-                    statement.setInt(1, updateReservation);
-                    resultSet = statement.executeQuery();
-
-                    while (resultSet.next()) {
-                        String row = "Booking ID: " + resultSet.getString("Booking_Id")
-                                + ", Check-In Date: " + resultSet.getString("Start_Date")
-                                + ", Check-Out Date: " + resultSet.getString("End_Date")
-                                + ", Room Number: " + resultSet.getString("Hotel_Rooms_Id");
-                        System.out.println(row);
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("There was an error, try again");
-            }
-        }
-    }
-
     public void reservation(Connection connect, PreparedStatement statement, ResultSet resultSets) {
 
         System.out.println("""

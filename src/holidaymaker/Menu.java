@@ -13,6 +13,7 @@ public class Menu {
    // private Database database = new Database();
     private Booking booking = new Booking();
     private Hotel hotel = new Hotel();
+    private Rooms rooms = new Rooms();
 
     public Menu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         mainMenu(connect, statement, resultSet);
@@ -27,7 +28,7 @@ public class Menu {
             System.out.println("[2] Delete a customer. ");
             System.out.println("[3] Search rooms and make a reservation");
             System.out.println("[4] Change, delete or update a booking.");
-            System.out.println("[5] See reservations ");
+            System.out.println("[5] See all bookings ");
             System.out.println("[6] All Registered Users ");
             System.out.println("[7] Exit");
             String userInput = console.nextLine();
@@ -49,7 +50,7 @@ public class Menu {
                     break;
 
                 case "5":
-                    seeReservations(connect, statement, resultSet);
+                    hotel.getAllReservations(connect, statement, resultSet);
                     break;
 
                 case "6":
@@ -63,32 +64,6 @@ public class Menu {
                     break;
             }
 
-        }
-    }
-    private void seeReservations(Connection connect, PreparedStatement statement, ResultSet resultSet) {
-        boolean isMenuOn = true;
-        while (isMenuOn) {
-            System.out.println("[1] See all reservations");
-            System.out.println("[2] See reservations by specific guest");
-            System.out.println("[3] Exit to main menu");
-            String userInput = console.nextLine();
-            switch (userInput) {
-                case "1":
-                    hotel.getAllReservations(connect, statement, resultSet);
-                    break;
-
-                case "2":
-                    customer.findGuestBookings(connect, statement, resultSet);
-                    break;
-
-                case "3":
-                    isMenuOn = false;
-                    break;
-
-                default:
-                    System.out.println("Please enter a number between 1-3");
-                    break;
-            }
         }
     }
 
@@ -123,18 +98,18 @@ public class Menu {
     private void searchMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("[1] Search for empty rooms with full board");
-            System.out.println("[2] Search for empty rooms with extra bed");
-            System.out.println("[3] Search for empty rooms with half board");
-            System.out.println("[4] Search for empty rooms with no extras");
-            System.out.println("[5] Make reservation");
-            System.out.println("[6] Exit");
+            System.out.println("|1| Search for empty rooms with |full board|");
+            System.out.println("|2| Search for empty rooms with |half board|");
+            System.out.println("|3| Search for empty rooms with |extra bed|");
+            System.out.println("|4| Search for empty rooms with |no extras|");
+            System.out.println("|5| Make reservation");
+            System.out.println("|6| Exit");
             String beginSearchOrExit = console.nextLine();
             switch (beginSearchOrExit) {
-                case "1" -> hotel.getAllEmptyRoomsFullboard(connect, statement, resultSet);
-                case "2" -> hotel.getAllEmptyRoomsExtrabed(connect, statement, resultSet);
-                case "3" -> hotel.getAllEmptyRoomshalfboard(connect, statement, resultSet);
-                case "4" -> hotel.getAllEmptyRoomsNone(connect, statement, resultSet);
+                case "1" -> rooms.getAllEmptyRoomsFullboard(connect, statement, resultSet);
+                case "2" -> rooms.getAllEmptyRoomshalfboard(connect, statement, resultSet);
+                case "3" -> rooms.getAllEmptyRoomsExtrabed(connect, statement, resultSet);
+                case "4" -> rooms.getAllEmptyRoomsNone(connect, statement, resultSet);
                 case "5" -> booking.reservation(connect, statement, resultSet);
                 case "6" -> isRunning = false;
                 default -> System.out.println("Please enter a number between 1-2");

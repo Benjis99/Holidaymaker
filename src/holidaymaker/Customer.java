@@ -77,7 +77,7 @@ public class Customer {
                             + " Check-Out Date: " + resultSet.getString("End_Date") + "\n"
                             + " Room Number: " + resultSet.getString("Hotel_Rooms_Id") + "\n";
                     System.out.println(row);
-                    System.out.println("------------------------------------------------------------");
+                    System.out.println("────────────────────────────────────────────────────────────────────");
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -113,7 +113,7 @@ public class Customer {
                         + " | Last Name: " + resultSet.getString("Last_Name")
                         + " | Phone Number: " + resultSet.getString("Phone_Number");
                 System.out.println(row);
-                System.out.println("------------------------------------------------------------");
+                System.out.println("────────────────────────────────────────────────────────────────────");
             }
         } catch (Exception ex) {
             System.out.println("There was an error, try again.");
