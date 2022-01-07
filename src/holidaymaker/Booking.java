@@ -6,10 +6,7 @@ import java.sql.ResultSet;
 
 
 public class Booking {
-
     private Customer customer = new Customer();
-    private int reservationId;
-
 
     public void deleteBooking(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         customer.findGuestBookings(connect, statement, resultSet);
@@ -26,7 +23,6 @@ public class Booking {
 
 
     public void booking(Connection connect, PreparedStatement statement, ResultSet resultSets) {
-
         System.out.println("""
                 Make your reservation:""");
         int bookingId = Dialog.dialog("BookingId: ");

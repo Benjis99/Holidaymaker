@@ -8,7 +8,6 @@ import java.sql.SQLException;
 public class Menu {
 
     private Customer customer = new Customer();
-   // private Database database = new Database();
     private Booking booking = new Booking();
     private Hotel hotel = new Hotel();
     private Rooms rooms = new Rooms();
@@ -29,7 +28,7 @@ public class Menu {
                     |3| Search rooms and make a reservation
                     |4| Change, delete or update a booking
                     |5| See all bookings
-                    |6| All Registered Users
+                    |6| All Registered customers
                     |7| All Hotels
                     |8| Exit""");
             switch (userInput) {
