@@ -6,8 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Customer {
-
-
+    public static final String TEXT_RESET = "\u001B[0m";
+    public static final String TEXT_GREEN = "\u001B[32m";
 
     public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         String firstName = Dialog.dialogString("Enter first name: ");
@@ -38,7 +38,7 @@ public class Customer {
             statement.setString(1, firstName.toLowerCase());
             statement.setString(2, lastName.toLowerCase());
             resultSet = statement.executeQuery();
-            System.out.println(firstName + " " + lastName +"'s CustomerId:" + resultSet.getString("Customer_Id"));
+            System.out.println(firstName + " " + lastName +"'s CustomerId:" + TEXT_GREEN+resultSet.getString("Customer_Id")+TEXT_RESET);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -73,7 +73,7 @@ public class Customer {
                     break;
                 }
                 while (resultSet.next()) {
-                    String row = "Booking ID: " + resultSet.getString("Booking_Id") + "\n"
+                    String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("Booking_Id")+TEXT_RESET + "\n"
                             + " Check-In Date: " + resultSet.getString("Start_Date") + "\n"
                             + " Check-Out Date: " + resultSet.getString("End_Date") + "\n"
                             + " Room Number: " + resultSet.getString("Hotel_Rooms_Id") + "\n";
@@ -113,7 +113,7 @@ public class Customer {
                 String row = "First Name: " + resultSet.getString("First_Name")
                         + " | Last Name: " + resultSet.getString("Last_Name")
                         + " | Phone Number: " + resultSet.getString("Phone_Number")
-                        + " | CustomerId: " + resultSet.getString("Customer_Id");
+                        + " | CustomerId: " + TEXT_GREEN+resultSet.getString("Customer_Id")+TEXT_RESET;
                 System.out.println(row);
                 System.out.println("────────────────────────────────────────────────────────────────────");
             }

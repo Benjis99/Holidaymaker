@@ -33,10 +33,10 @@ public class Menu {
                     |7| All Hotels
                     |8| Exit""");
             switch (userInput) {
-                case "1" -> registerOrCompany(connect, statement, resultSet);
+                case "1" -> registerMenu(connect, statement, resultSet);
                 case "2" -> customer.deleteCustomer(connect, statement);
-                case "3" -> searchMenu(connect, statement, resultSet);
-                case "4" -> reservationOptions(connect, statement, resultSet);
+                case "3" -> searchMenuExtras(connect, statement, resultSet);
+                case "4" -> bookingOptions(connect, statement, resultSet);
                 case "5" -> hotel.getAllReservations(connect, statement, resultSet);
                 case "6" -> customer.printAllCustomers(connect, statement, resultSet);
                 case "7" -> hotel.allHotels(connect, statement, resultSet);
@@ -46,7 +46,7 @@ public class Menu {
 
         }
     }
-    private void registerOrCompany(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+    private void registerMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
@@ -64,7 +64,7 @@ public class Menu {
     }
 
 
-    private void reservationOptions(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+    private void bookingOptions(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
@@ -81,7 +81,7 @@ public class Menu {
     }
 
 
-    private void searchMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
+    private void searchMenuExtras(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean isRunning = true;
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
