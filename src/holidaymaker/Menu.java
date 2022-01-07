@@ -84,11 +84,13 @@ public class Menu {
             int beginSearchOrExit = Dialog.dialog("""
                     |1| Search for empty rooms with extras
                     |2| Search for empty rooms with entertainments
-                    |3| Exit""");
+                    |3| Search for empty rooms via hotel
+                    |4| Exit""");
             switch (beginSearchOrExit) {
                 case 1 -> searchMenuExtras(connect, statement, resultSet);
                 case 2 -> entertainments(connect, statement, resultSet);
-                case 3 -> isRunning = false;
+                case 3 -> searchViaHotel(connect, statement, resultSet);
+                case 4 -> isRunning = false;
                 default -> System.out.println("Please enter a number between 1-3");
             }
         }
@@ -110,6 +112,28 @@ public class Menu {
                 case 3 -> rooms.getAllEmptyRoomsExtrabed(connect, statement, resultSet);
                 case 4 -> rooms.getAllEmptyRoomsNone(connect, statement, resultSet);
                 case 5 -> booking.booking(connect, statement, resultSet);
+                case 6 -> isRunning = false;
+                default -> System.out.println("Please enter a number between 1-6");
+            }
+        }
+    }
+
+    private void searchViaHotel(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
+        boolean isRunning = true;
+        while (isRunning) {
+            int beginSearchOrExit = Dialog.dialog("""
+                    |1| Search for empty rooms |Gothia Towers - Göteborg|
+                    |2| Search for empty rooms |Bradisson Blu - Stockholm|
+                    |3| Search for empty rooms |Clarion Hotel - Luleå|
+                    |4| Search for empty rooms |Comfort Hotel - Malmö|
+                    |5| Search for empty rooms |Quality Hotel - Skövde|
+                    |6| Exit""");
+            switch (beginSearchOrExit) {
+                case 1 -> rooms.gothiaTowers(connect, statement, resultSet);
+                case 2 -> rooms.bradissonHotel(connect, statement, resultSet);
+                case 3 -> rooms.clarionHotel(connect, statement, resultSet);
+                case 4 -> rooms.comfortHotel(connect, statement, resultSet);
+                case 5 -> rooms.qualityHotel(connect, statement, resultSet);
                 case 6 -> isRunning = false;
                 default -> System.out.println("Please enter a number between 1-6");
             }
