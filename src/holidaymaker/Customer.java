@@ -39,6 +39,17 @@ public class Customer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        try {
+        statement = connect.prepareStatement("SELECT Customer_Id FROM Customer WHERE First_Name = ? AND Last_Name = ?");
+            statement.setString(1, firstName.toLowerCase());
+            statement.setString(2, lastName.toLowerCase());
+            resultSet = statement.executeQuery();
+            System.out.println(firstName + " " + lastName +" CustomerId:" + resultSet.getString("Customer_Id"));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void deleteCustomer(Connection connect, PreparedStatement statement) {
