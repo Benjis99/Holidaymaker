@@ -35,7 +35,7 @@ public class Menu {
             switch (userInput) {
                 case "1" -> registerMenu(connect, statement, resultSet);
                 case "2" -> customer.deleteCustomer(connect, statement);
-                case "3" -> searchMenuExtras(connect, statement, resultSet);
+                case "3" -> searchMenu(connect, statement, resultSet);
                 case "4" -> bookingOptions(connect, statement, resultSet);
                 case "5" -> hotel.getAllReservations(connect, statement, resultSet);
                 case "6" -> customer.printAllCustomers(connect, statement, resultSet);
@@ -79,7 +79,21 @@ public class Menu {
             }
         }
     }
-
+    private void searchMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
+        boolean isRunning = true;
+        while (isRunning) {
+            int beginSearchOrExit = Dialog.dialog("""
+                    |1| Search for empty rooms with extras
+                    |2| Search for empty rooms with entertainments
+                    |3| Exit""");
+            switch (beginSearchOrExit) {
+                case 1 -> searchMenuExtras(connect, statement, resultSet);
+                case 2 -> entertainments(connect, statement, resultSet);
+                case 3 -> isRunning = false;
+                default -> System.out.println("Please enter a number between 1-3");
+            }
+        }
+    }
 
     private void searchMenuExtras(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean isRunning = true;
@@ -98,7 +112,27 @@ public class Menu {
                 case 4 -> rooms.getAllEmptyRoomsNone(connect, statement, resultSet);
                 case 5 -> booking.booking(connect, statement, resultSet);
                 case 6 -> isRunning = false;
-                default -> System.out.println("Please enter a number between 1-2");
+                default -> System.out.println("Please enter a number between 1-6");
+            }
+        }
+    }
+
+    private void entertainments(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
+        boolean isRunning = true;
+        while (isRunning) {
+            int beginSearchOrExit = Dialog.dialog("""
+                    |1| Search for empty rooms with |Restaurant|
+                    |2| Search for empty rooms with |Kids Club|
+                    |3| Search for empty rooms with |Pool|
+                    |4| Search for empty rooms with |Evening Entertainment|
+                    |5| Exit""");
+            switch (beginSearchOrExit) {
+                case 1 -> rooms.roomRestaurant(connect, statement, resultSet);
+                case 2 -> rooms.roomKidsClub(connect, statement, resultSet);
+                case 3 -> rooms.roomPool(connect, statement, resultSet);
+                case 4 -> rooms.roomEvenening(connect, statement, resultSet);
+                case 5 -> isRunning = false;
+                default -> System.out.println("Please enter a number between 1-5");
             }
         }
     }
