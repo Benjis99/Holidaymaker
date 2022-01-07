@@ -38,7 +38,7 @@ public class Customer {
             statement.setString(1, firstName.toLowerCase());
             statement.setString(2, lastName.toLowerCase());
             resultSet = statement.executeQuery();
-            System.out.println(firstName + " " + lastName +" CustomerId:" + resultSet.getString("Customer_Id"));
+            System.out.println(firstName + " " + lastName +"'s CustomerId:" + resultSet.getString("Customer_Id"));
 
         } catch (Exception e) {
             e.printStackTrace();
