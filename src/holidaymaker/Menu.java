@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 
 public class Menu {
 
-    private Scanner console = new Scanner(System.in);
     private Customer customer = new Customer();
    // private Database database = new Database();
     private Booking booking = new Booking();
@@ -24,7 +22,7 @@ public class Menu {
     private void mainMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean running = true;
         while (running){
-            System.out.println("""
+            String userInput = Dialog.dialogString("""
                     Welcome! Please, choose an option:
                     |1| Register a customer or Company
                     |2| Delete a customer
@@ -34,7 +32,6 @@ public class Menu {
                     |6| All Registered Users
                     |7| All Hotels
                     |8| Exit""");
-            String userInput = console.nextLine();
             switch (userInput) {
                 case "1" -> registerOrCompany(connect, statement, resultSet);
                 case "2" -> customer.deleteCustomer(connect, statement);
@@ -52,14 +49,15 @@ public class Menu {
     private void registerOrCompany(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
-            System.out.println("|1| Register Customer");
-            System.out.println("|2| Register Company");
-            System.out.println("|3| Exit to Main Menu");
-            String userInput = console.nextLine();
+            int userInput = Dialog.dialog("""
+                    |1| Register Customer
+                    |2| Register Company
+                    |3| Exit to Main Menu""");
+
             switch (userInput) {
-                case "1" -> customer.registerUser(connect, statement, resultSet);
-                case "2" -> company.registerUser(connect, statement, resultSet);
-                case "3" -> optionsIsRunning = false;
+                case 1 -> customer.registerUser(connect, statement, resultSet);
+                case 2 -> company.registerUser(connect, statement, resultSet);
+                case 3 -> optionsIsRunning = false;
                 default -> System.out.println("Please enter a number between 1-3");
             }
         }
@@ -69,14 +67,14 @@ public class Menu {
     private void reservationOptions(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
-            System.out.println("|1| Delete Reservation");
-            System.out.println("|2| Update Reservation");
-            System.out.println("|3| Exit to Main Menu");
-            String userInput = console.nextLine();
+            int userInput = Dialog.dialog("""
+                    |1| Delete Reservation
+                    |2| Update
+                    |3| Exit to Main Menu""");
             switch (userInput) {
-                case "1" -> booking.deleteBooking(connect, statement, resultSet);
-                case "2" -> booking.updateReservation(connect, statement, resultSet);
-                case "3" -> optionsIsRunning = false;
+                case 1 -> booking.deleteBooking(connect, statement, resultSet);
+                case 2 -> booking.updateReservation(connect, statement, resultSet);
+                case 3 -> optionsIsRunning = false;
                 default -> System.out.println("Please enter a number between 1-3");
             }
         }
@@ -86,20 +84,20 @@ public class Menu {
     private void searchMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("|1| Search for empty rooms with |full board|");
-            System.out.println("|2| Search for empty rooms with |half board|");
-            System.out.println("|3| Search for empty rooms with |extra bed|");
-            System.out.println("|4| Search for empty rooms with |no extras|");
-            System.out.println("|5| Make reservation");
-            System.out.println("|6| Exit");
-            String beginSearchOrExit = console.nextLine();
+            int beginSearchOrExit = Dialog.dialog("""
+                    |1| Search for empty rooms with |full board|
+                    |2| Search for empty rooms with |half board|
+                    |3| Search for empty rooms with |extra bed|
+                    |4| Search for empty rooms with |no extras|
+                    |5| Make booking
+                    |6| Exit""");
             switch (beginSearchOrExit) {
-                case "1" -> rooms.getAllEmptyRoomsFullboard(connect, statement, resultSet);
-                case "2" -> rooms.getAllEmptyRoomshalfboard(connect, statement, resultSet);
-                case "3" -> rooms.getAllEmptyRoomsExtrabed(connect, statement, resultSet);
-                case "4" -> rooms.getAllEmptyRoomsNone(connect, statement, resultSet);
-                case "5" -> booking.reservation(connect, statement, resultSet);
-                case "6" -> isRunning = false;
+                case 1 -> rooms.getAllEmptyRoomsFullboard(connect, statement, resultSet);
+                case 2 -> rooms.getAllEmptyRoomshalfboard(connect, statement, resultSet);
+                case 3 -> rooms.getAllEmptyRoomsExtrabed(connect, statement, resultSet);
+                case 4 -> rooms.getAllEmptyRoomsNone(connect, statement, resultSet);
+                case 5 -> booking.booking(connect, statement, resultSet);
+                case 6 -> isRunning = false;
                 default -> System.out.println("Please enter a number between 1-2");
             }
         }

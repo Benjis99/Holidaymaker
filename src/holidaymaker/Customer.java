@@ -1,29 +1,22 @@
 package holidaymaker;
 
-import java.util.Scanner;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Customer {
-    private Scanner console = new Scanner(System.in);
+
 
 
     public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
-        System.out.println("Enter first name: ");
-        String firstName = console.nextLine();
-        System.out.println("Enter last name: ");
-        String lastName = console.nextLine();
-        System.out.println("Enter Birth Date/Year: ");
-        String birthDate = console.nextLine();
-        System.out.println("Enter Email: ");
-        String email = console.nextLine();
-        System.out.println("Enter phone number: ");
-        String phoneNumber = console.nextLine();
-        System.out.println("Enter Creditcard number: ");
-        String creditcard = console.nextLine();
-        System.out.println("Enter card type: ");
-        String cardType = console.nextLine();
+        String firstName = Dialog.dialogString("Enter first name: ");
+        String lastName = Dialog.dialogString("Enter last name: ");
+        String birthDate = Dialog.dialogString("Enter Birth Date/Year: ");
+        String email = Dialog.dialogString("Enter Email: ");
+        String phoneNumber = Dialog.dialogString("Enter phone number: ");
+        String creditcard = Dialog.dialogString("Enter Creditcard number: ");
+        String cardType = Dialog.dialogString("Enter card type: ");
         try {
             statement = connect.prepareStatement("INSERT INTO Customer(First_Name, Last_Name, Birth_Date, Email, Phone_Number, Creditcard, Creditcard_Type)VALUES(?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, firstName.toLowerCase());
@@ -53,8 +46,7 @@ public class Customer {
     }
 
     public void deleteCustomer(Connection connect, PreparedStatement statement) {
-        System.out.println("Enter CustomerId:");
-        int customerId = Integer.parseInt(console.nextLine());
+        int customerId = Dialog.dialog("Enter CustomerId:");
 
         try {
             statement = connect.prepareStatement("DELETE FROM Customer WHERE Customer_Id = ?");
@@ -68,10 +60,8 @@ public class Customer {
 
     public void findGuestBookings(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         while(true) {
-            System.out.println("Enter guest's first name:");
-            String firstName = console.nextLine();
-            System.out.println("Enter guest's phone number: ");
-            String phoneNumber = console.nextLine();
+            String firstName = Dialog.dialogString("Enter guest's first name:");
+            String phoneNumber = Dialog.dialogString("Enter guest's phone number: ");
             checkIfGuestIsPresent(connect, statement, resultSet, firstName, phoneNumber);
             try {
                 statement = connect.prepareStatement("SELECT * FROM Customer WHERE Customer_Id = (SELECT Id FROM Customer WHERE First_Name = ? AND Phone_Number = ?)");
