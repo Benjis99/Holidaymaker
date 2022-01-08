@@ -3,11 +3,8 @@ package holidaymaker;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Scanner;
 
 public class Company {
-
-    private Scanner console = new Scanner(System.in);
 
     public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         String firstName = Dialog.dialogString("Enter first name: ");

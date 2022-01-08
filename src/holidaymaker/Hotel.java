@@ -10,7 +10,7 @@ public class Hotel {
             statement = connect.prepareStatement(" SELECT * FROM AllBookingsPrice");
             resultSet = statement.executeQuery();
             if (!resultSet.isBeforeFirst()) {
-                System.out.println("There are no bookings in the system yet.");
+                System.out.println("There are no bookings in the system.");
             }
             while (resultSet.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +

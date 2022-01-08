@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 public class Customer {
     public static final String TEXT_RESET = "\u001B[0m";
     public static final String TEXT_GREEN = "\u001B[32m";
+    public static final String TEXT_RED = "\u001B[31m";
 
     public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         String firstName = Dialog.dialogString("Enter first name: ");
@@ -58,25 +59,23 @@ public class Customer {
         }
     }
 
-    public void findGuestBookings(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+    public void findCustomer(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         while(true) {
-            String firstName = Dialog.dialogString("Enter guest's first name:");
-            String phoneNumber = Dialog.dialogString("Enter guest's phone number: ");
-            checkIfGuestIsPresent(connect, statement, resultSet, firstName, phoneNumber);
+            String firstName = Dialog.dialogString("Enter Customers first name:");
+            String lastName = Dialog.dialogString("Enter Customers last name: ");
+        //    checkIfGuestIsPresent(connect, statement, resultSet, firstName, lastName);
             try {
-                statement = connect.prepareStatement("SELECT * FROM Customer WHERE Customer_Id = (SELECT Id FROM Customer WHERE First_Name = ? AND Phone_Number = ?)");
-                statement.setString(1, firstName.toLowerCase());
-                statement.setString(2, phoneNumber);
+                statement = connect.prepareStatement("SELECT BookingId FROM bookingId WHERE Firstname = ? AND Lastname = ?");
+                statement.setString(1, firstName);
+                statement.setString(2, lastName);
                 resultSet = statement.executeQuery();
                 if (!resultSet.isBeforeFirst()) {
-                    System.out.println("No reservations were found");
+                    System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
+                    findCustomer(connect, statement, resultSet);
                     break;
                 }
                 while (resultSet.next()) {
-                    String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("Booking_Id")+TEXT_RESET + "\n"
-                            + " Check-In Date: " + resultSet.getString("Start_Date") + "\n"
-                            + " Check-Out Date: " + resultSet.getString("End_Date") + "\n"
-                            + " Room Number: " + resultSet.getString("Hotel_Rooms_Id") + "\n";
+                    String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("BookingId")+TEXT_RESET;
                     System.out.println(row);
                     System.out.println("────────────────────────────────────────────────────────────────────");
                 }
@@ -87,18 +86,18 @@ public class Customer {
         }
     }
 
-    private void checkIfGuestIsPresent(Connection connect, PreparedStatement statement, ResultSet resultSet, String firstName, String phoneNumber) {
+    private void checkIfGuestIsPresent(Connection connect, PreparedStatement statement, ResultSet resultSet, String firstName, String lastName) {
         try {
-            statement = connect.prepareStatement("SELECT id FROM guests WHERE first_name = ? AND phone_number = ?");
-            statement.setString(1, firstName.toLowerCase());
-            statement.setString(2, phoneNumber);
+            statement = connect.prepareStatement("SELECT Customer_Id FROM Customer WHERE First_Name = ? AND Last_Name = ?");
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
             resultSet = statement.executeQuery();
             if (!resultSet.isBeforeFirst()) {
-                System.out.println("Guest was not found.");
-                findGuestBookings(connect, statement, resultSet);
+                System.out.println(TEXT_RED+"Customer was not found."+TEXT_RESET);
+                findCustomer(connect, statement, resultSet);
             }
         } catch (Exception ex) {
-            System.out.println("There was an error, try again.");
+            System.out.println(TEXT_RED+"There was an error, try again."+TEXT_RESET);
         }
     }
 

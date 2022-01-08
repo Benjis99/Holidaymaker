@@ -7,46 +7,49 @@ import java.sql.ResultSet;
 
 public class Booking {
     private Customer customer = new Customer();
+    public static final String TEXT_RESET = "\u001B[0m";
+    public static final String TEXT_GREEN = "\u001B[32m";
+    public static final String TEXT_RED = "\u001B[31m";
 
     public void deleteBooking(Connection connect, PreparedStatement statement, ResultSet resultSet) {
-        customer.findGuestBookings(connect, statement, resultSet);
-        int removeReservation = Dialog.dialog("Select reservation ID you wish to remove: ");
+        customer.findCustomer(connect, statement, resultSet);
+        int removeBooking = Dialog.dialog("Select BookingID you want to remove: ");
         try {
-            statement = connect.prepareStatement("DELETE FROM Booking WHERE Booking_Id = ?");
-            statement.setInt(1, removeReservation);
+            statement = connect.prepareStatement("UPDATE Booking SET Customer_Id = ?, Start_Date = ?, End_Date = ? WHERE Booking_Id = ?");
+            statement.setInt(4, removeBooking);
             statement.executeUpdate();
-            System.out.println("Reservation successfully removed!");
+            System.out.println(TEXT_GREEN+"Reservation successfully removed!"+TEXT_RESET);
         } catch (Exception e) {
-            System.out.println("There was an error, try again");
+            System.out.println("There was a "+ TEXT_RED +"problem"+TEXT_RESET+", please try again");
         }
     }
 
 
     public void booking(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         System.out.println("""
-                Make your reservation:""");
+                Make your booking:""");
         int bookingId = Dialog.dialog("BookingId: ");
         int customerId = Dialog.dialog("CustomerId: ");
         String checkinDate = Dialog.dialogString("Check-in date m/d/year");
         String checkoutDate = Dialog.dialogString("Check-out date m/d/year");
 
         try {
-            statement = connect.prepareStatement("UPDATE Booking set Customer_Id = ?, Start_Date = ?, End_Date = ? WHERE Booking_Id = ?");
+            statement = connect.prepareStatement("UPDATE Booking SET Customer_Id = ?, Start_Date = ?, End_Date = ? WHERE Booking_Id = ?");
             statement.setInt(1, customerId);
             statement.setString(2, checkinDate);
             statement.setString(3, checkoutDate);
             statement.setInt(4, bookingId);
-            System.out.println("successfully updated! ");
+            System.out.println(TEXT_GREEN+"Successfully booked room! "+TEXT_RESET);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void updateReservation(Connection connect, PreparedStatement statement, ResultSet resultSets) {
+    public void updateBooking(Connection connect, PreparedStatement statement, ResultSet resultSets) {
 
         System.out.println("""
-                    Update a reservation:""");
+                    Update a booking:""");
         int bookingId = Dialog.dialog("BookingId");
         int customerId = Dialog.dialog("CustomerId: ");
         String checkinDate = Dialog.dialogString("Check-in date m/d/year");
@@ -58,7 +61,7 @@ public class Booking {
             statement.setString(2, checkinDate);
             statement.setString(3, checkoutDate);
             statement.setInt(4, bookingId);
-            System.out.println("successfully updated! ");
+            System.out.println(TEXT_GREEN+"successfully updated! "+TEXT_RESET);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

@@ -21,7 +21,8 @@ public class Menu {
     private void mainMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean running = true;
         while (running){
-            String userInput = Dialog.dialogString("""
+            int userInput = Dialog.dialog("""
+                    
                     Welcome! Please, choose an option:
                     |1| Register a customer or Company
                     |2| Delete a customer
@@ -32,14 +33,14 @@ public class Menu {
                     |7| All Hotels
                     |8| Exit""");
             switch (userInput) {
-                case "1" -> registerMenu(connect, statement, resultSet);
-                case "2" -> customer.deleteCustomer(connect, statement);
-                case "3" -> searchMenu(connect, statement, resultSet);
-                case "4" -> bookingOptions(connect, statement, resultSet);
-                case "5" -> hotel.getAllReservations(connect, statement, resultSet);
-                case "6" -> customer.printAllCustomers(connect, statement, resultSet);
-                case "7" -> hotel.allHotels(connect, statement, resultSet);
-                case "8" -> System.exit(1);
+                case 1 -> registerMenu(connect, statement, resultSet);
+                case 2 -> customer.deleteCustomer(connect, statement);
+                case 3 -> searchMenu(connect, statement, resultSet);
+                case 4 -> bookingOptions(connect, statement, resultSet);
+                case 5 -> hotel.getAllReservations(connect, statement, resultSet);
+                case 6 -> customer.printAllCustomers(connect, statement, resultSet);
+                case 7 -> hotel.allHotels(connect, statement, resultSet);
+                case 8 -> System.exit(1);
 
             }
 
@@ -67,12 +68,12 @@ public class Menu {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
-                    |1| Delete Reservation
-                    |2| Update
+                    |1| Delete booking
+                    |2| Update booking
                     |3| Exit to Main Menu""");
             switch (userInput) {
                 case 1 -> booking.deleteBooking(connect, statement, resultSet);
-                case 2 -> booking.updateReservation(connect, statement, resultSet);
+                case 2 -> booking.updateBooking(connect, statement, resultSet);
                 case 3 -> optionsIsRunning = false;
                 default -> System.out.println("Please enter a number between 1-3");
             }

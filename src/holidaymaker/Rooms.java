@@ -92,6 +92,7 @@ public class Rooms {
             e.printStackTrace();
         }
     }
+
     public void getAllEmptyRoomsNone(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM RoomsNone");
@@ -120,6 +121,7 @@ public class Rooms {
             e.printStackTrace();
         }
     }
+
     public void roomRestaurant(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM Restaurant");
@@ -149,6 +151,7 @@ public class Rooms {
             e.printStackTrace();
         }
     }
+
     public void roomKidsClub(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM Kids_Club");
@@ -267,6 +270,7 @@ public class Rooms {
             e.printStackTrace();
         }
     }
+
     public void qualityHotel(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM Qualityhotel");
@@ -326,6 +330,7 @@ public class Rooms {
             e.printStackTrace();
         }
     }
+
     public void comfortHotel(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM Comforthotel");
@@ -355,6 +360,7 @@ public class Rooms {
             e.printStackTrace();
         }
     }
+
     public void clarionHotel(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM Clarionhotel");
@@ -384,9 +390,5 @@ public class Rooms {
             e.printStackTrace();
         }
     }
-
-
-
-
 
 }
