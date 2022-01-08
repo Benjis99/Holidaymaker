@@ -24,13 +24,13 @@ public class Menu {
             int userInput = Dialog.dialog("""
                     
                     Welcome! Please, choose an option:
-                    |1| Register a customer or Company
-                    |2| Delete a customer
-                    |3| Search rooms and make a reservation
+                    |1| Register Customer or Company
+                    |2| Delete Customer
+                    |3| Search rooms and make a booking
                     |4| Change, delete or update a booking
                     |5| See all bookings
                     |6| All Registered customers
-                    |7| All Hotels
+                    |7| Available Hotels
                     |8| Exit""");
             switch (userInput) {
                 case 1 -> registerMenu(connect, statement, resultSet);
@@ -48,9 +48,10 @@ public class Menu {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
-                    |1| Hotel via Stars
-                    |2| Hotel via Distance city
-                    |3| Hotel via Distance beach
+                    Hotels via:
+                    |1| Review/Stars
+                    |2| Distance city
+                    |3| Distance beach
                     |4| Exit to Main Menu""");
 
             switch (userInput) {
@@ -67,8 +68,9 @@ public class Menu {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
-                    |1| Register Customer
-                    |2| Register Company
+                    Register menu:
+                    |1| Customer
+                    |2| Company
                     |3| Exit to Main Menu""");
 
             switch (userInput) {
@@ -100,9 +102,10 @@ public class Menu {
         boolean isRunning = true;
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
-                    |1| Search for empty rooms with extras
-                    |2| Search for empty rooms with entertainments
-                    |3| Search for empty rooms via hotel
+                    Empty rooms via:
+                    |1| Extras
+                    |2| Entertainments
+                    |3| Hotels
                     |4| Exit""");
             switch (beginSearchOrExit) {
                 case 1 -> searchMenuExtras(connect, statement, resultSet);
@@ -118,10 +121,11 @@ public class Menu {
         boolean isRunning = true;
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
-                    |1| Search for empty rooms with |full board|
-                    |2| Search for empty rooms with |half board|
-                    |3| Search for empty rooms with |extra bed|
-                    |4| Search for empty rooms with |no extras|
+                    Empty rooms with:
+                    |1| |full board|
+                    |2| |half board|
+                    |3| |extra bed|
+                    |4| |no extras|
                     |5| Make booking
                     |6| Exit""");
             switch (beginSearchOrExit) {
@@ -140,11 +144,12 @@ public class Menu {
         boolean isRunning = true;
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
-                    |1| Search for empty rooms |Gothia Towers - Göteborg|
-                    |2| Search for empty rooms |Bradisson Blu - Stockholm|
-                    |3| Search for empty rooms |Clarion Hotel - Luleå|
-                    |4| Search for empty rooms |Comfort Hotel - Malmö|
-                    |5| Search for empty rooms |Quality Hotel - Skövde|
+                    Empty rooms in: 
+                    |1| |Gothia Towers - Göteborg|
+                    |2| |Bradisson Blu - Stockholm|
+                    |3| |Clarion Hotel - Luleå|
+                    |4| |Comfort Hotel - Malmö|
+                    |5| |Quality Hotel - Skövde|
                     |6| Exit""");
             switch (beginSearchOrExit) {
                 case 1 -> rooms.gothiaTowers(connect, statement, resultSet);
@@ -162,10 +167,11 @@ public class Menu {
         boolean isRunning = true;
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
-                    |1| Search for empty rooms with |Restaurant|
-                    |2| Search for empty rooms with |Kids Club|
-                    |3| Search for empty rooms with |Pool|
-                    |4| Search for empty rooms with |Evening Entertainment|
+                    Empty rooms with: 
+                    |1| |Restaurant|
+                    |2| |Kids Club|
+                    |3| |Pool|
+                    |4| |Evening Entertainment|
                     |5| Exit""");
             switch (beginSearchOrExit) {
                 case 1 -> rooms.roomRestaurant(connect, statement, resultSet);
