@@ -39,13 +39,30 @@ public class Menu {
                 case 4 -> bookingOptions(connect, statement, resultSet);
                 case 5 -> hotel.getAllReservations(connect, statement, resultSet);
                 case 6 -> customer.printAllCustomers(connect, statement, resultSet);
-                case 7 -> hotel.allHotels(connect, statement, resultSet);
+                case 7 -> hotelMenu(connect, statement, resultSet);
                 case 8 -> System.exit(1);
-
             }
-
         }
     }
+    private void hotelMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+        boolean optionsIsRunning = true;
+        while (optionsIsRunning) {
+            int userInput = Dialog.dialog("""
+                    |1| Hotel via Stars
+                    |2| Hotel via Distance city
+                    |3| Hotel via Distance beach
+                    |4| Exit to Main Menu""");
+
+            switch (userInput) {
+                case 1 -> hotel.allHotels(connect, statement, resultSet);
+                case 2 -> hotel.allHotelsViaCity(connect, statement, resultSet);
+                case 3 -> hotel.allHotelsViaBeach(connect, statement, resultSet);
+                case 4 -> optionsIsRunning = false;
+                default -> System.out.println("Please enter a number between 1-4");
+            }
+        }
+    }
+
     private void registerMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {

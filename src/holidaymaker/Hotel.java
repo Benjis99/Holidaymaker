@@ -52,5 +52,46 @@ public class Hotel {
         }
     }
 
+    public void allHotelsViaBeach(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+        try {
+            statement = connect.prepareStatement(" SELECT * FROM hotelDistanceBeach");
+            resultSet = statement.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("Error.");
+            }
+            while (resultSet.next()) {
+                String row = "────────────────────────────────────────────────────────────────────" + "\n" +
+                        " HotelName: " + resultSet.getString("Name") + "\n" +
+                        " City: " + resultSet.getString("City") + "\n" +
+                        " Distance to the city: " + resultSet.getString("CityDs") + "km\n" +
+                        " Distance to the Beach: " + resultSet.getString("Beach") + "km\n" +
+                        "────────────────────────────────────────────────────────────────────";
+                System.out.println(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void allHotelsViaCity(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+        try {
+            statement = connect.prepareStatement(" SELECT * FROM hotelDistanceCity");
+            resultSet = statement.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("There are no hotels in the system yet.");
+            }
+            while (resultSet.next()) {
+                String row = "────────────────────────────────────────────────────────────────────" + "\n" +
+                        " HotelName: " + resultSet.getString("Name") + "\n" +
+                        " City: " + resultSet.getString("City") + "\n" +
+                        " Distance to the Beach: " + resultSet.getString("Beach") + "km\n" +
+                        " Distance to the city: " + resultSet.getString("CityDs") + "km\n" +
+                        "────────────────────────────────────────────────────────────────────";
+                System.out.println(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
