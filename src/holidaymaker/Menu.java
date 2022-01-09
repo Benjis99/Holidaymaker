@@ -12,11 +12,27 @@ public class Menu {
     private Hotel hotel = new Hotel();
     private Rooms rooms = new Rooms();
     private Company company = new Company();
+    public static final String TEXT_RESET = "\u001B[0m";
+    public static final String TEXT_GREEN = "\u001B[32m";
+    public static final String TEXT_RED = "\u001B[31m";
 
     public Menu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
-        mainMenu(connect, statement, resultSet);
+        adminLogin(connect, statement, resultSet);
     }
 
+    private void adminLogin (Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException{
+        String first = Dialog.dialogNoLine("Enter admin username: ");
+        String last = Dialog.dialogNoLine("Enter password: ");
+
+        if (first.equalsIgnoreCase("admin") && last.equalsIgnoreCase("admin")){
+            System.out.println(TEXT_GREEN+"Successfully logged in "+TEXT_RESET);
+            mainMenu(connect, statement, resultSet);
+        } else{
+            System.out.println(TEXT_RED+"Wrong username or password, try again"+TEXT_RESET);
+            adminLogin(connect, statement, resultSet);
+        }
+
+    }
 
     private void mainMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean running = true;
@@ -75,7 +91,7 @@ public class Menu {
 
             switch (userInput) {
                 case 1 -> customer.registerUser(connect, statement, resultSet);
-                case 2 -> company.registerUser(connect, statement, resultSet);
+                case 2 -> company.registerCompany(connect, statement, resultSet);
                 case 3 -> optionsIsRunning = false;
                 default -> System.out.println("Please enter a number between 1-3");
             }
@@ -144,7 +160,7 @@ public class Menu {
         boolean isRunning = true;
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
-                    Empty rooms in: 
+                    Empty rooms in:
                     |1| |Gothia Towers - Göteborg|
                     |2| |Bradisson Blu - Stockholm|
                     |3| |Clarion Hotel - Luleå|

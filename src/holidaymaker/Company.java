@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 
 public class Company {
 
-    public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+    public void registerCompany(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         String firstName = Dialog.dialogString("Enter first name: ");
         String lastName = Dialog.dialogString("Enter last name: ");
         String birthDate = Dialog.dialogString("Enter Birth Date/Year: ");

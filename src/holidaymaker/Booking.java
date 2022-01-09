@@ -20,7 +20,7 @@ public class Booking {
             statement.executeUpdate();
             System.out.println(TEXT_GREEN+"Reservation successfully removed!"+TEXT_RESET);
         } catch (Exception e) {
-            System.out.println("There was a "+ TEXT_RED +"problem"+TEXT_RESET+", please try again");
+            System.out.println(TEXT_RED+"There was a problem, please try again"+TEXT_RESET);
         }
     }
 

@@ -9,6 +9,11 @@ public class Customer {
     public static final String TEXT_RESET = "\u001B[0m";
     public static final String TEXT_GREEN = "\u001B[32m";
     public static final String TEXT_RED = "\u001B[31m";
+    public static final String TEXT_YELLOW = "\u001B[33m";
+    public static final String TEXT_BLUE = "\u001B[34m";
+    public static final String TEXT_PURPLE = "\u001B[35m";
+    public static final String TEXT_CYAN = "\u001B[36m";
+    private String id;
 
     public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         String firstName = Dialog.dialogString("Enter first name: ");
@@ -63,7 +68,7 @@ public class Customer {
         while(true) {
             String firstName = Dialog.dialogString("Enter Customers first name:");
             String lastName = Dialog.dialogString("Enter Customers last name: ");
-        //    checkIfGuestIsPresent(connect, statement, resultSet, firstName, lastName);
+       //     checkIfGuestIsPresent(connect, statement, resultSet, firstName, lastName);
             try {
                 statement = connect.prepareStatement("SELECT BookingId FROM bookingId WHERE Firstname = ? AND Lastname = ?");
                 statement.setString(1, firstName);
@@ -78,10 +83,37 @@ public class Customer {
                     String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("BookingId")+TEXT_RESET;
                     System.out.println(row);
                     System.out.println("────────────────────────────────────────────────────────────────────");
+                    id = resultSet.getString("BookingId");
                 }
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            try {
+                statement = connect.prepareStatement("SELECT * FROM customerRoom WHERE BookingId = ?");
+                statement.setString(1, id);
+                resultSet = statement.executeQuery();
+                if (!resultSet.isBeforeFirst()) {
+                    System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
+                    findCustomer(connect, statement, resultSet);
+                    break;
+                }
+                while (resultSet.next()) {
+                    String row =
+                           TEXT_GREEN+ " CustomerId: "+ TEXT_RESET +resultSet.getString("CustomerId") +"\n"+
+                           TEXT_RED+ " Check-in date: "+ TEXT_RESET +resultSet.getString("Check-in")+
+                           TEXT_BLUE+ " Check-out date: " + TEXT_RESET+resultSet.getString("Check-out")+"\n"+
+                           TEXT_CYAN+ " Hotel Name: " + TEXT_RESET+resultSet.getString("Hotel_Name")+
+                           TEXT_PURPLE+ " City: "+ TEXT_RESET +resultSet.getString("City")+"\n"+
+                           TEXT_YELLOW+ " Firstname: " + TEXT_RESET+resultSet.getString("FirstName")+"\n"+
+                           TEXT_YELLOW+ " Lastname: " + TEXT_RESET+resultSet.getString("LastName");
+
+                    System.out.println(row);
+                    System.out.println("────────────────────────────────────────────────────────────────────");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
             break;
         }
     }

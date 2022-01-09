@@ -32,6 +32,17 @@ public class Dialog {
         }
     }
 
+    public static String dialogNoLine(String text) {
+        while (true) {
+            System.out.print(text);
+            try {
+                return console.nextLine();
+            } catch (Exception e) {
+                System.out.println("Wrong input!");
+            }
+        }
+    }
+
     public static String dialogString(String text){
         System.out.println(text);
         return console.nextLine();
