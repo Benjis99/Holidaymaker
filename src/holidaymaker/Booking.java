@@ -24,7 +24,7 @@ public class Booking {
         }
     }
 
-
+/*
     public void booking(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         System.out.println("""
                 Make your booking:""");
@@ -39,6 +39,29 @@ public class Booking {
             statement.setString(2, checkinDate);
             statement.setString(3, checkoutDate);
             statement.setInt(4, bookingId);
+            System.out.println(TEXT_GREEN+"Successfully booked room! "+TEXT_RESET);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+ */
+
+    public void mbooking(Connection connect, PreparedStatement statement, ResultSet resultSets) {
+        System.out.println("""
+                Make your booking:""");
+        int roomId = Dialog.dialog("roomId: ");
+        int customerId = Dialog.dialog("CustomerId: ");
+        String checkinDate = Dialog.dialogString("Check-in date m/d/year");
+        String checkoutDate = Dialog.dialogString("Check-out date m/d/year");
+
+        try {
+            statement = connect.prepareStatement("INSERT INTO Booking (Customer_Id, Start_Date, End_Date, Hotel_Rooms_Id) VALUES(?,?,?,?)");
+            statement.setInt(1, customerId);
+            statement.setString(2, checkinDate);
+            statement.setString(3, checkoutDate);
+            statement.setInt(4, roomId);
             System.out.println(TEXT_GREEN+"Successfully booked room! "+TEXT_RESET);
             statement.executeUpdate();
         } catch (Exception e) {

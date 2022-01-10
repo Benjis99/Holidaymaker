@@ -15,6 +15,7 @@ public class Customer {
     public static final String TEXT_CYAN = "\u001B[36m";
     private String id;
 
+
     public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         String firstName = Dialog.dialogString("Enter first name: ");
         String lastName = Dialog.dialogString("Enter last name: ");
@@ -33,8 +34,7 @@ public class Customer {
             statement.setString(6, creditcard);
             statement.setString(7, cardType);
             statement.executeUpdate();
-            String fullName = firstName + " " + lastName;
-            System.out.println(fullName + " registered successfully! ");
+            System.out.println(TEXT_GREEN+ "Registration was successful! "+TEXT_RESET);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,7 +44,8 @@ public class Customer {
             statement.setString(1, firstName.toLowerCase());
             statement.setString(2, lastName.toLowerCase());
             resultSet = statement.executeQuery();
-            System.out.println(firstName + " " + lastName +"'s CustomerId:" + TEXT_GREEN+resultSet.getString("Customer_Id")+TEXT_RESET);
+            System.out.println(firstName + " " + lastName +"'s CustomerId: " + TEXT_GREEN+resultSet.getString("Customer_Id")+TEXT_RESET);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,7 +59,7 @@ public class Customer {
             statement = connect.prepareStatement("DELETE FROM Customer WHERE Customer_Id = ?");
             statement.setInt(1, customerId);
             statement.executeUpdate();
-            System.out.println("successfully deleted! ");
+            System.out.println(TEXT_GREEN+"successfully deleted! "+TEXT_RESET);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -118,20 +119,6 @@ public class Customer {
         }
     }
 
-    private void checkIfGuestIsPresent(Connection connect, PreparedStatement statement, ResultSet resultSet, String firstName, String lastName) {
-        try {
-            statement = connect.prepareStatement("SELECT Customer_Id FROM Customer WHERE First_Name = ? AND Last_Name = ?");
-            statement.setString(1, firstName);
-            statement.setString(2, lastName);
-            resultSet = statement.executeQuery();
-            if (!resultSet.isBeforeFirst()) {
-                System.out.println(TEXT_RED+"Customer was not found."+TEXT_RESET);
-                findCustomer(connect, statement, resultSet);
-            }
-        } catch (Exception ex) {
-            System.out.println(TEXT_RED+"There was an error, try again."+TEXT_RESET);
-        }
-    }
 
     public void printAllCustomers(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         try {

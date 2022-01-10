@@ -41,14 +41,15 @@ public class Menu {
             int userInput = Dialog.dialog("""
                     
                     Welcome! Please, choose an option:
-                    |1| Register Customer or Company
+                    |1| Register Customer                                                                                 ( ͡👁️ ͜ʖ ͡👁️)
                     |2| Delete Customer
                     |3| Search rooms and make a booking
                     |4| Change, delete or update a booking
                     |5| See all bookings
                     |6| All Registered customers
                     |7| Available Hotels
-                    |8| Exit""");
+                    |8| Exit
+                    |9| TEST""");
             switch (userInput) {
                 case 1 -> registerMenu(connect, statement, resultSet);
                 case 2 -> customer.deleteCustomer(connect, statement);
@@ -58,6 +59,22 @@ public class Menu {
                 case 6 -> customer.printAllCustomers(connect, statement, resultSet);
                 case 7 -> hotelMenu(connect, statement, resultSet);
                 case 8 -> System.exit(1);
+                case 9 -> test(connect, statement, resultSet);
+            }
+        }
+    }
+    private void test(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+        boolean optionsIsRunning = true;
+        while (optionsIsRunning) {
+            int userInput = Dialog.dialog("""
+                    Hotels via:
+                    |1| book
+                    |2| Exit to Main Menu""");
+
+            switch (userInput) {
+                case 1 -> booking.mbooking(connect, statement, resultSet);
+                case 2 -> optionsIsRunning = false;
+                default -> System.out.println("Please enter a number between 1-2");
             }
         }
     }
@@ -81,22 +98,30 @@ public class Menu {
         }
     }
 
-    private void registerMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+    private void registerMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
-                    Register menu:
-                    |1| Customer
-                    |2| Company
-                    |3| Exit to Main Menu""");
+                    |1| Register Customer
+                    |2| Exit to Main Menu""");
 
             switch (userInput) {
                 case 1 -> customer.registerUser(connect, statement, resultSet);
-                case 2 -> company.registerCompany(connect, statement, resultSet);
-                case 3 -> optionsIsRunning = false;
-                default -> System.out.println("Please enter a number between 1-3");
+                case 2 -> mainMenu(connect, statement, resultSet);
+                default -> System.out.println("Please enter a number between 1-2");
             }
+            int answer = Dialog.dialog("""
+                Add company?
+                |1| Yes |2| No""");
+            if (answer == 1) {
+                int amount = Dialog.dialog("How many companys do you want to add?");
+                for (int i = 0; i < amount; i++){
+                    company.registerCompany(connect, statement, resultSet);
+                }
         }
+
+        }
+
     }
 
 
@@ -150,7 +175,7 @@ public class Menu {
                 case 2 -> rooms.getAllEmptyRoomshalfboard(connect, statement, resultSet);
                 case 3 -> rooms.getAllEmptyRoomsExtrabed(connect, statement, resultSet);
                 case 4 -> rooms.getAllEmptyRoomsNone(connect, statement, resultSet);
-                case 5 -> booking.booking(connect, statement, resultSet);
+                case 5 -> booking.mbooking(connect, statement, resultSet);
                 case 6 -> isRunning = false;
                 default -> System.out.println("Please enter a number between 1-6");
             }

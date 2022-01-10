@@ -10,3 +10,4 @@ public class Main {
 
 
 }
+ //Order by på pris, så det går från lågt till högt

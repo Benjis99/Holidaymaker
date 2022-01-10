@@ -8,7 +8,14 @@ public class Rooms {
 
     public void getAllEmptyRoomsFullboard(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM RoomsFullboard");
+            System.out.println("Search for empty date:");
+            String checkInF = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutF = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM EmptyFullboardQ WHERE Extras_Id IS 2 AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND Extras_Id = 2 ORDER BY Price");
+            statement.setString(1, checkInF);
+            statement.setString(2, checkInF);
+            statement.setString(3, checkOutF);
+            statement.setString(4, checkOutF);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -17,9 +24,9 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
-                        " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -37,7 +44,14 @@ public class Rooms {
 
     public void getAllEmptyRoomsExtrabed(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM RoomsExtrabed");
+            System.out.println("Search for empty date:");
+            String checkInE = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutE = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM EmptyFullboardQ WHERE Extras_Id IS 1 AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND Extras_Id = 1 ORDER BY Price");
+            statement.setString(1, checkInE);
+            statement.setString(2, checkInE);
+            statement.setString(3, checkOutE);
+            statement.setString(4, checkOutE);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -46,9 +60,9 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
-                        " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -66,7 +80,14 @@ public class Rooms {
 
     public void getAllEmptyRoomshalfboard(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM RoomsHalfboard");
+            System.out.println("Search for empty date:");
+            String checkInH = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutH = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM EmptyFullboardQ WHERE Extras_Id IS 3 AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND Extras_Id = 3 ORDER BY Price");
+            statement.setString(1, checkInH);
+            statement.setString(2, checkInH);
+            statement.setString(3, checkOutH);
+            statement.setString(4, checkOutH);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -75,9 +96,9 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
-                        " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -95,7 +116,14 @@ public class Rooms {
 
     public void getAllEmptyRoomsNone(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM RoomsNone");
+            System.out.println("Search for empty date:");
+            String checkInN = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutN = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM EmptyFullboardQ WHERE Extras_Id IS 4 AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND Extras_Id = 4 ORDER BY Price");
+            statement.setString(1, checkInN);
+            statement.setString(2, checkInN);
+            statement.setString(3, checkOutN);
+            statement.setString(4, checkOutN);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -104,9 +132,9 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
-                        " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -124,7 +152,14 @@ public class Rooms {
 
     public void roomRestaurant(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Restaurant");
+            System.out.println("Search for empty date:");
+            String checkInR = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutR = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM PoolQ WHERE R IS 'true' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND R IS 'true' ORDER BY Price");
+            statement.setString(1, checkInR);
+            statement.setString(2, checkInR);
+            statement.setString(3, checkOutR);
+            statement.setString(4, checkOutR);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -133,9 +168,9 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
-                        " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -154,8 +189,16 @@ public class Rooms {
 
     public void roomKidsClub(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Kids_Club");
+            System.out.println("Search for empty date:");
+            String checkInK = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutK = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM PoolQ WHERE K IS 'true' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND K IS 'true' ORDER BY Price");
+            statement.setString(1, checkInK);
+            statement.setString(2, checkInK);
+            statement.setString(3, checkOutK);
+            statement.setString(4, checkOutK);
             resultSets = statement.executeQuery();
+
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
             }
@@ -163,9 +206,9 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
-                        " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -184,7 +227,14 @@ public class Rooms {
 
     public void roomPool(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Pool");
+            System.out.println("Search for empty date:");
+            String checkInP = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutP = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM PoolQ WHERE P IS 'true' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND P IS 'true' ORDER BY Price");
+            statement.setString(1, checkInP);
+            statement.setString(2, checkInP);
+            statement.setString(3, checkOutP);
+            statement.setString(4, checkOutP);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -193,9 +243,9 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
-                        " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -213,7 +263,14 @@ public class Rooms {
     }
     public void roomEvenening(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Evenening_Entertainment");
+            System.out.println("Search for empty date:");
+            String checkInEE = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutEE = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM PoolQ WHERE E IS 'true' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND E IS 'true' ORDER BY Price");
+            statement.setString(1, checkInEE);
+            statement.setString(2, checkInEE);
+            statement.setString(3, checkOutEE);
+            statement.setString(4, checkOutEE);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -222,9 +279,9 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
-                        " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -243,7 +300,14 @@ public class Rooms {
 
     public void bradissonHotel(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM BradissonBlu");
+            System.out.println("Search for empty date:");
+            String checkInB = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutB = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM hotels WHERE HotelName IS 'Bradisson Blu' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND HotelName IS 'Bradisson Blu' ORDER BY Price");
+            statement.setString(1, checkInB);
+            statement.setString(2, checkInB);
+            statement.setString(3, checkOutB);
+            statement.setString(4, checkOutB);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -252,8 +316,8 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -273,7 +337,14 @@ public class Rooms {
 
     public void qualityHotel(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Qualityhotel");
+            System.out.println("Search for empty date:");
+            String checkInQ = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutQ = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM hotels WHERE HotelName IS 'Quality Hotel' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND HotelName IS 'Quality Hotel' ORDER BY Price");
+            statement.setString(1, checkInQ);
+            statement.setString(2, checkInQ);
+            statement.setString(3, checkOutQ);
+            statement.setString(4, checkOutQ);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -282,8 +353,8 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -303,7 +374,14 @@ public class Rooms {
 
     public void gothiaTowers(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Gothiatowers");
+            System.out.println("Search for empty date:");
+            String checkInG = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutG = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM hotels WHERE HotelName IS 'Gothia Towers' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND HotelName IS 'Gothia Towers' ORDER BY Price");
+            statement.setString(1, checkInG);
+            statement.setString(2, checkInG);
+            statement.setString(3, checkOutG);
+            statement.setString(4, checkOutG);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -312,8 +390,8 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -333,7 +411,14 @@ public class Rooms {
 
     public void comfortHotel(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Comforthotel");
+            System.out.println("Search for empty date:");
+            String checkInC = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutC = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM hotels WHERE HotelName IS 'Comfort Hotel' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND HotelName IS 'Comfort Hotel' ORDER BY Price");
+            statement.setString(1, checkInC);
+            statement.setString(2, checkInC);
+            statement.setString(3, checkOutC);
+            statement.setString(4, checkOutC);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -342,8 +427,8 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -363,7 +448,14 @@ public class Rooms {
 
     public void clarionHotel(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
-            statement = connect.prepareStatement(" SELECT * FROM Clarionhotel");
+            System.out.println("Search for empty date:");
+            String checkInCH = Dialog.dialogString("Check-in date m/d/year");
+            String checkOutCH = Dialog.dialogString("Check-out date m/d/year");
+            statement = connect.prepareStatement("SELECT * FROM hotels WHERE HotelName IS 'Clarion Hotel' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND HotelName IS 'Clarion Hotel' ORDER BY Price");
+            statement.setString(1, checkInCH);
+            statement.setString(2, checkInCH);
+            statement.setString(3, checkOutCH);
+            statement.setString(4, checkOutCH);
             resultSets = statement.executeQuery();
             if (!resultSets.isBeforeFirst()) {
                 System.out.println("There are no empty rooms.");
@@ -372,8 +464,8 @@ public class Rooms {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
                         " Booking ID: " + resultSets.getString("BookingId") + "\n" +
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("Check-in") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("Check-out") + "\n" +
+                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
+                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Room Number: " + resultSets.getString("RoomNumber") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
