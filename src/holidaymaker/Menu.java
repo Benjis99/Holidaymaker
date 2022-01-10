@@ -29,6 +29,7 @@ public class Menu {
             mainMenu(connect, statement, resultSet);
         } else{
             System.out.println(TEXT_RED+"Wrong username or password, try again"+TEXT_RESET);
+            System.out.println("pssst username: admin, password: admin");
             adminLogin(connect, statement, resultSet);
         }
 
