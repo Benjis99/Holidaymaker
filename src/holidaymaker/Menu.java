@@ -41,35 +41,70 @@ public class Menu {
             int userInput = Dialog.dialog("""
                     
                     Welcome! Please, choose an option:
-                    |1| Register Customer                                                                                 ( ͡👁️ ͜ʖ ͡👁️)
-                    |2| Delete Customer
-                    |3| Search rooms and make a booking
-                    |4| Change, delete or update a booking
-                    |5| See all bookings
-                    |6| All Registered customers
-                    |7| Available Hotels
-                    |8| Exit
-                    |9| TEST""");
+                    |1| Customer info/reg/del/list
+                    |2| Search rooms and make a booking
+                    |3| See Bookings/Change booking info
+                    |4| Available Hotels
+                    |5| Turn off program""");
             switch (userInput) {
-                case 1 -> registerMenu(connect, statement, resultSet);
-                case 2 -> customer.deleteCustomer(connect, statement);
-                case 3 -> searchMenu(connect, statement, resultSet);
-                case 4 -> bookingOptions(connect, statement, resultSet);
-                case 5 -> hotel.getAllReservations(connect, statement, resultSet);
-                case 6 -> customer.printAllCustomers(connect, statement, resultSet);
-                case 7 -> hotelMenu(connect, statement, resultSet);
-                case 8 -> System.exit(1);
-                case 9 -> test(connect, statement, resultSet);
+                case 1 -> customerInfo(connect, statement, resultSet);
+                case 2 -> searchMenu(connect, statement, resultSet);
+                case 3 -> bookingsAll(connect, statement, resultSet);
+                case 4 -> hotelMenu(connect, statement, resultSet);
+                case 5 -> System.exit(1);
             }
         }
     }
+
+    private void customerInfo(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
+        boolean optionsIsRunning = true;
+        while (optionsIsRunning) {
+            int userInput = Dialog.dialog("""
+                    Customer information:
+                    |1| Register
+                    |2| Delete
+                    |3| Update
+                    |4| Customer list
+                    |5| Go back""");
+
+            switch (userInput) {
+                case 1 -> registerMenu(connect, statement, resultSet);
+                case 2 -> customer.deleteCustomer(connect, statement);
+                case 3 -> customer.updateCustomer(connect, statement, resultSet);
+                case 4 -> customer.printAllCustomers(connect, statement, resultSet);
+                case 5 -> optionsIsRunning = false;
+                default -> System.out.println("Please enter a number between 1-5");
+            }
+        }
+    }
+
+    private void bookingsAll(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+        boolean optionsIsRunning = true;
+        while (optionsIsRunning) {
+            int userInput = Dialog.dialog("""
+                    Search for bookings:
+                    |1| Bookings with company's
+                    |2| All Bookings
+                    |3| Change, delete or update a booking
+                    |4| Go back""");
+
+            switch (userInput) {
+                case 1 -> hotel.getAllReservationsCompany(connect, statement, resultSet);
+                case 2 -> hotel.getAllReservations(connect, statement, resultSet);
+                case 3 -> bookingOptions(connect, statement, resultSet);
+                case 4 -> optionsIsRunning = false;
+                default -> System.out.println("Please enter a number between 1-4");
+            }
+        }
+    }
+
     private void test(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
                     Hotels via:
                     |1| book
-                    |2| Exit to Main Menu""");
+                    |2| Go back""");
 
             switch (userInput) {
                 case 1 -> booking.mbooking(connect, statement, resultSet);
@@ -86,7 +121,7 @@ public class Menu {
                     |1| Review/Stars
                     |2| Distance city
                     |3| Distance beach
-                    |4| Exit to Main Menu""");
+                    |4| Go back""");
 
             switch (userInput) {
                 case 1 -> hotel.allHotels(connect, statement, resultSet);
@@ -102,8 +137,7 @@ public class Menu {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
-                    |1| Register Customer
-                    |2| Exit to Main Menu""");
+                         |1| Register customer |2| Go back""");
 
             switch (userInput) {
                 case 1 -> customer.registerUser(connect, statement, resultSet);
@@ -119,9 +153,7 @@ public class Menu {
                     company.registerCompany(connect, statement, resultSet);
                 }
         }
-
         }
-
     }
 
 
@@ -131,7 +163,7 @@ public class Menu {
             int userInput = Dialog.dialog("""
                     |1| Delete booking
                     |2| Update booking
-                    |3| Exit to Main Menu""");
+                    |3| Go back""");
             switch (userInput) {
                 case 1 -> booking.deleteBooking(connect, statement, resultSet);
                 case 2 -> booking.updateBooking(connect, statement, resultSet);
@@ -148,13 +180,15 @@ public class Menu {
                     |1| Extras
                     |2| Entertainments
                     |3| Hotels
-                    |4| Exit""");
+                    |4| Book room
+                    |5| Go back""");
             switch (beginSearchOrExit) {
                 case 1 -> searchMenuExtras(connect, statement, resultSet);
                 case 2 -> entertainments(connect, statement, resultSet);
                 case 3 -> searchViaHotel(connect, statement, resultSet);
-                case 4 -> isRunning = false;
-                default -> System.out.println("Please enter a number between 1-3");
+                case 4 -> booking.mbooking(connect, statement, resultSet);
+                case 5 -> isRunning = false;
+                default -> System.out.println("Please enter a number between 1-5");
             }
         }
     }
@@ -164,12 +198,12 @@ public class Menu {
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
                     Empty rooms with:
-                    |1| |full board|
-                    |2| |half board|
-                    |3| |extra bed|
-                    |4| |no extras|
+                    |1| full board
+                    |2| half board
+                    |3| extra bed
+                    |4| no extras
                     |5| Make booking
-                    |6| Exit""");
+                    |6| Go back""");
             switch (beginSearchOrExit) {
                 case 1 -> rooms.getAllEmptyRoomsFullboard(connect, statement, resultSet);
                 case 2 -> rooms.getAllEmptyRoomshalfboard(connect, statement, resultSet);
@@ -187,11 +221,11 @@ public class Menu {
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
                     Empty rooms in:
-                    |1| |Gothia Towers - Göteborg|
-                    |2| |Bradisson Blu - Stockholm|
-                    |3| |Clarion Hotel - Luleå|
-                    |4| |Comfort Hotel - Malmö|
-                    |5| |Quality Hotel - Skövde|
+                    |1| Gothia Towers - Göteborg
+                    |2| Bradisson Blu - Stockholm
+                    |3| Clarion Hotel - Luleå
+                    |4| Comfort Hotel - Malmö
+                    |5| Quality Hotel - Skövde
                     |6| Exit""");
             switch (beginSearchOrExit) {
                 case 1 -> rooms.gothiaTowers(connect, statement, resultSet);
@@ -209,12 +243,12 @@ public class Menu {
         boolean isRunning = true;
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
-                    Empty rooms with: 
-                    |1| |Restaurant|
-                    |2| |Kids Club|
-                    |3| |Pool|
-                    |4| |Evening Entertainment|
-                    |5| Exit""");
+                    Empty rooms with:
+                    |1| Restaurant
+                    |2| Kids Club
+                    |3| Pool
+                    |4| Evening Entertainment
+                    |5| Go back""");
             switch (beginSearchOrExit) {
                 case 1 -> rooms.roomRestaurant(connect, statement, resultSet);
                 case 2 -> rooms.roomKidsClub(connect, statement, resultSet);

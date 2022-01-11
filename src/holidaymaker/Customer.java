@@ -4,6 +4,7 @@ package holidaymaker;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Customer {
     public static final String TEXT_RESET = "\u001B[0m";
@@ -14,6 +15,7 @@ public class Customer {
     public static final String TEXT_PURPLE = "\u001B[35m";
     public static final String TEXT_CYAN = "\u001B[36m";
     private String id;
+    private String customerIds;
 
 
     public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
@@ -69,9 +71,8 @@ public class Customer {
         while(true) {
             String firstName = Dialog.dialogString("Enter Customers first name:");
             String lastName = Dialog.dialogString("Enter Customers last name: ");
-       //     checkIfGuestIsPresent(connect, statement, resultSet, firstName, lastName);
             try {
-                statement = connect.prepareStatement("SELECT BookingId FROM bookingId WHERE Firstname = ? AND Lastname = ?");
+                statement = connect.prepareStatement("SELECT BookingId, Checkin, Checkout, Hotel_Name FROM te WHERE Firstname = ? AND Lastname = ?");
                 statement.setString(1, firstName);
                 statement.setString(2, lastName);
                 resultSet = statement.executeQuery();
@@ -81,41 +82,23 @@ public class Customer {
                     break;
                 }
                 while (resultSet.next()) {
-                    String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("BookingId")+TEXT_RESET;
+                    String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("BookingId")+TEXT_RESET+
+                            TEXT_RED + " Check-in date: " + TEXT_RESET + resultSet.getString("Checkin")+
+                            TEXT_BLUE + " Check-out date: " + TEXT_RESET + resultSet.getString("Checkout")+
+                            TEXT_CYAN + " Hotel Name: " + TEXT_RESET + resultSet.getString("Hotel_Name");
                     System.out.println(row);
                     System.out.println("────────────────────────────────────────────────────────────────────");
                     id = resultSet.getString("BookingId");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            try {
-                statement = connect.prepareStatement("SELECT * FROM customerRoom WHERE BookingId = ?");
-                statement.setString(1, id);
-                resultSet = statement.executeQuery();
-                if (!resultSet.isBeforeFirst()) {
-                    System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
-                    findCustomer(connect, statement, resultSet);
-                    break;
-                }
-                while (resultSet.next()) {
-                    String row =
-                           TEXT_GREEN+ " CustomerId: "+ TEXT_RESET +resultSet.getString("CustomerId") +"\n"+
-                           TEXT_RED+ " Check-in date: "+ TEXT_RESET +resultSet.getString("Check-in")+
-                           TEXT_BLUE+ " Check-out date: " + TEXT_RESET+resultSet.getString("Check-out")+"\n"+
-                           TEXT_CYAN+ " Hotel Name: " + TEXT_RESET+resultSet.getString("Hotel_Name")+
-                           TEXT_PURPLE+ " City: "+ TEXT_RESET +resultSet.getString("City")+"\n"+
-                           TEXT_YELLOW+ " Firstname: " + TEXT_RESET+resultSet.getString("FirstName")+"\n"+
-                           TEXT_YELLOW+ " Lastname: " + TEXT_RESET+resultSet.getString("LastName");
 
-                    System.out.println(row);
-                    System.out.println("────────────────────────────────────────────────────────────────────");
                 }
+
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
 
             break;
+
+
         }
     }
 
@@ -138,6 +121,44 @@ public class Customer {
         } catch (Exception ex) {
             System.out.println("There was an error, try again.");
         }
+    }
+
+    public void updateCustomer(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
+        System.out.println("Enter first and lastname of the person you want to change information");
+        String firstName = Dialog.dialogString("Enter first name: ");
+        String lastName = Dialog.dialogString("Enter last name: ");
+
+        statement = connect.prepareStatement("SELECT Customer_Id FROM Customer WHERE First_Name = ? AND Last_Name = ?");
+        statement.setString(1, firstName.toLowerCase());
+        statement.setString(2, lastName.toLowerCase());
+        resultSet = statement.executeQuery();
+
+
+        while (resultSet.next()) {
+            customerIds=(resultSet.getString("Customer_Id"));
+        }
+        System.out.println("Enter the new information you want");
+        String birthDate = Dialog.dialogString("Enter Birth Date/Year: ");
+        String email = Dialog.dialogString("Enter Email: ");
+        String phoneNumber = Dialog.dialogString("Enter phone number: ");
+        String creditcard = Dialog.dialogString("Enter Creditcard number: ");
+        String cardType = Dialog.dialogString("Enter card type: ");
+        try {
+            statement = connect.prepareStatement("UPDATE Customer SET First_Name = ?, Last_Name = ?, Birth_Date = ?, Email = ?, Phone_Number = ?, Creditcard = ?, Creditcard_Type = ? WHERE Customer_Id = ?");
+            statement.setString(1, firstName.toLowerCase());
+            statement.setString(2, lastName.toLowerCase());
+            statement.setString(3, birthDate);
+            statement.setString(4, email);
+            statement.setString(5, phoneNumber);
+            statement.setString(6, creditcard);
+            statement.setString(7, cardType);
+            statement.setString(8, customerIds);
+            statement.executeUpdate();
+            System.out.println(TEXT_GREEN+ "Registration was successful! "+TEXT_RESET);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

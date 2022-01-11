@@ -24,29 +24,6 @@ public class Booking {
         }
     }
 
-/*
-    public void booking(Connection connect, PreparedStatement statement, ResultSet resultSets) {
-        System.out.println("""
-                Make your booking:""");
-        int bookingId = Dialog.dialog("BookingId: ");
-        int customerId = Dialog.dialog("CustomerId: ");
-        String checkinDate = Dialog.dialogString("Check-in date m/d/year");
-        String checkoutDate = Dialog.dialogString("Check-out date m/d/year");
-
-        try {
-            statement = connect.prepareStatement("UPDATE Booking SET Customer_Id = ?, Start_Date = ?, End_Date = ? WHERE Booking_Id = ?");
-            statement.setInt(1, customerId);
-            statement.setString(2, checkinDate);
-            statement.setString(3, checkoutDate);
-            statement.setInt(4, bookingId);
-            System.out.println(TEXT_GREEN+"Successfully booked room! "+TEXT_RESET);
-            statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
- */
 
     public void mbooking(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         System.out.println("""
@@ -92,3 +69,57 @@ public class Booking {
     }
 
 }
+/*
+  public void findCustomer(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+        while(true) {
+            String firstName = Dialog.dialogString("Enter Customers first name:");
+            String lastName = Dialog.dialogString("Enter Customers last name: ");
+            try {
+                statement = connect.prepareStatement("SELECT BookingId FROM bookingId WHERE Firstname = ? AND Lastname = ?");
+                statement.setString(1, firstName);
+                statement.setString(2, lastName);
+                resultSet = statement.executeQuery();
+                if (!resultSet.isBeforeFirst()) {
+                    System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
+                    findCustomer(connect, statement, resultSet);
+                    break;
+                }
+                while (resultSet.next()) {
+                    String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("BookingId")+TEXT_RESET;
+                    System.out.println(row);
+                    System.out.println("────────────────────────────────────────────────────────────────────");
+                    id = resultSet.getString("BookingId");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            try {
+                statement = connect.prepareStatement("SELECT * FROM AllBookingsNew WHERE BookingId = ?");
+                statement.setString(1, id);
+                resultSet = statement.executeQuery();
+                if (!resultSet.isBeforeFirst()) {
+                    System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
+                    findCustomer(connect, statement, resultSet);
+                    break;
+                }
+                while (resultSet.next()) {
+                    String row =
+                            "Booking ID: " +resultSet.getString("BookingId")+"\n"+
+                           TEXT_GREEN+ " CustomerId: "+ TEXT_RESET +resultSet.getString("CustomerId") +"\n"+
+                           TEXT_RED+ " Check-in date: "+ TEXT_RESET +resultSet.getString("Check-in")+
+                           TEXT_BLUE+ " Check-out date: " + TEXT_RESET+resultSet.getString("Check-out")+"\n"+
+                           TEXT_CYAN+ " Hotel Name: " + TEXT_RESET+resultSet.getString("Hotel_Name")+
+                           TEXT_PURPLE+ " City: "+ TEXT_RESET +resultSet.getString("City");
+
+                    System.out.println(row);
+                    System.out.println("────────────────────────────────────────────────────────────────────");
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
+            break;
+        }
+    }
+
+ */
