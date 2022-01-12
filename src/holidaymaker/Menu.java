@@ -20,15 +20,15 @@ public class Menu {
         adminLogin(connect, statement, resultSet);
     }
 
-    private void adminLogin (Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException{
+    private void adminLogin(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         String first = Dialog.dialogNoLine("Enter admin username: ");
         String last = Dialog.dialogNoLine("Enter password: ");
 
-        if (first.equalsIgnoreCase("admin") && last.equalsIgnoreCase("admin")){
-            System.out.println(TEXT_GREEN+"Successfully logged in "+TEXT_RESET);
+        if (first.equalsIgnoreCase("admin") && last.equalsIgnoreCase("admin")) {
+            System.out.println(TEXT_GREEN + "Successfully logged in " + TEXT_RESET);
             mainMenu(connect, statement, resultSet);
-        } else{
-            System.out.println(TEXT_RED+"Wrong username or password, try again"+TEXT_RESET);
+        } else {
+            System.out.println(TEXT_RED + "Wrong username or password, try again" + TEXT_RESET);
             System.out.println("pssst username: admin, password: admin");
             adminLogin(connect, statement, resultSet);
         }
@@ -37,9 +37,9 @@ public class Menu {
 
     private void mainMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean running = true;
-        while (running){
+        while (running) {
             int userInput = Dialog.dialog("""
-                    
+                                        
                     Welcome! Please, choose an option:
                     |1| Customer info/reg/del/list
                     |2| Search rooms and make a booking
@@ -90,7 +90,7 @@ public class Menu {
 
             switch (userInput) {
                 case 1 -> hotel.getAllReservationsCompany(connect, statement, resultSet);
-                case 2 -> hotel.getAllReservations(connect, statement, resultSet);
+                case 2 -> hotel.getAllBooks(connect, statement, resultSet);
                 case 3 -> bookingOptions(connect, statement, resultSet);
                 case 4 -> optionsIsRunning = false;
                 default -> System.out.println("Please enter a number between 1-4");
@@ -123,7 +123,7 @@ public class Menu {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {
             int userInput = Dialog.dialog("""
-                         |1| Register customer |2| Go back""");
+                    |1| Register customer |2| Go back""");
 
             switch (userInput) {
                 case 1 -> customer.registerUser(connect, statement, resultSet);
@@ -131,14 +131,14 @@ public class Menu {
                 default -> System.out.println("Please enter a number between 1-2");
             }
             int answer = Dialog.dialog("""
-                Add company?
-                |1| Yes |2| No""");
+                    Add company?
+                    |1| Yes |2| No""");
             if (answer == 1) {
                 int amount = Dialog.dialog("How many companys do you want to add?");
-                for (int i = 0; i < amount; i++){
+                for (int i = 0; i < amount; i++) {
                     company.registerCompany(connect, statement, resultSet);
                 }
-        }
+            }
         }
     }
 
@@ -158,6 +158,7 @@ public class Menu {
             }
         }
     }
+
     private void searchMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) throws SQLException {
         boolean isRunning = true;
         while (isRunning) {
@@ -245,7 +246,6 @@ public class Menu {
             }
         }
     }
-
 
 
 }

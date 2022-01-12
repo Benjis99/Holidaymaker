@@ -17,7 +17,6 @@ public class Company {
         String phoneNumber = Dialog.dialogString("Enter phone number: ");
 
 
-
         try {
             statement = connect.prepareStatement("INSERT INTO Company(First_Name, Last_Name, Email, Phone_Number, Birth_Date, Customer_Id)VALUES" +
                     "(?, ?, ?, ?, ?, ?)");
@@ -28,7 +27,7 @@ public class Company {
             statement.setString(5, birthDate);
             statement.setString(6, customerId);
             statement.executeUpdate();
-            System.out.println(TEXT_GREEN+ "Registered company successfully! "+TEXT_RESET);
+            System.out.println(TEXT_GREEN + "Registered company successfully! " + TEXT_RESET);
         } catch (Exception e) {
             e.printStackTrace();
         }

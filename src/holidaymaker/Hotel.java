@@ -1,4 +1,5 @@
 package holidaymaker;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,7 +33,7 @@ public class Hotel {
         }
     }
 
-    public void getAllReservations(Connection connect, PreparedStatement statement, ResultSet resultSet) {
+    public void getAllBooks(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM AllBookingsNew");
             resultSet = statement.executeQuery();
@@ -98,6 +99,7 @@ public class Hotel {
             e.printStackTrace();
         }
     }
+
     public void allHotelsViaCity(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         try {
             statement = connect.prepareStatement(" SELECT * FROM hotelDistanceCity");

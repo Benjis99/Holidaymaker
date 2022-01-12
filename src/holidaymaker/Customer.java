@@ -35,17 +35,17 @@ public class Customer {
             statement.setString(6, creditcard);
             statement.setString(7, cardType);
             statement.executeUpdate();
-            System.out.println(TEXT_GREEN+ "Registration was successful! "+TEXT_RESET);
+            System.out.println(TEXT_GREEN + "Registration was successful! " + TEXT_RESET);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         try {
-        statement = connect.prepareStatement("SELECT Customer_Id FROM Customer WHERE First_Name = ? AND Last_Name = ?");
+            statement = connect.prepareStatement("SELECT Customer_Id FROM Customer WHERE First_Name = ? AND Last_Name = ?");
             statement.setString(1, firstName.toLowerCase());
             statement.setString(2, lastName.toLowerCase());
             resultSet = statement.executeQuery();
-            System.out.println(firstName + " " + lastName +"'s CustomerId: " + TEXT_GREEN+resultSet.getString("Customer_Id")+TEXT_RESET);
+            System.out.println(firstName + " " + lastName + "'s CustomerId: " + TEXT_GREEN + resultSet.getString("Customer_Id") + TEXT_RESET);
 
 
         } catch (Exception e) {
@@ -60,14 +60,14 @@ public class Customer {
             statement = connect.prepareStatement("DELETE FROM Customer WHERE Customer_Id = ?");
             statement.setInt(1, customerId);
             statement.executeUpdate();
-            System.out.println(TEXT_GREEN+"successfully deleted! "+TEXT_RESET);
+            System.out.println(TEXT_GREEN + "successfully deleted! " + TEXT_RESET);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void findCustomer(Connection connect, PreparedStatement statement, ResultSet resultSet) {
-        while(true) {
+        while (true) {
             String firstName = Dialog.dialogString("Enter Customers first name:");
             String lastName = Dialog.dialogString("Enter Customers last name: ");
             try {
@@ -76,7 +76,7 @@ public class Customer {
                 statement.setString(2, lastName);
                 resultSet = statement.executeQuery();
                 if (!resultSet.isBeforeFirst()) {
-                    System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
+                    System.out.println(TEXT_RED + "No bookings were found" + TEXT_RESET);
                     int answer = Dialog.dialog("""
                             Do you want to try with another name?
                             |1| Yes |2| No""");
@@ -85,9 +85,9 @@ public class Customer {
                     }
                 }
                 while (resultSet.next()) {
-                    String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("BookingId")+TEXT_RESET+
-                            TEXT_RED + " Check-in date: " + TEXT_RESET + resultSet.getString("Checkin")+
-                            TEXT_BLUE + " Check-out date: " + TEXT_RESET + resultSet.getString("Checkout")+
+                    String row = "Booking ID: " + TEXT_GREEN + resultSet.getString("BookingId") + TEXT_RESET +
+                            TEXT_RED + " Check-in date: " + TEXT_RESET + resultSet.getString("Checkin") +
+                            TEXT_BLUE + " Check-out date: " + TEXT_RESET + resultSet.getString("Checkout") +
                             TEXT_CYAN + " Hotel Name: " + TEXT_RESET + resultSet.getString("Hotel_Name");
                     System.out.println(row);
                     System.out.println("────────────────────────────────────────────────────────────────────");
@@ -108,14 +108,14 @@ public class Customer {
                 System.out.println("There are no registered Customers yet. ");
             }
             while (resultSet.next()) {
-                String row = "Full Name: " + resultSet.getString("First_Name") +" "+ resultSet.getString("Last_Name")
+                String row = "Full Name: " + resultSet.getString("First_Name") + " " + resultSet.getString("Last_Name")
                         + " | Phone Number: " + resultSet.getString("Phone_Number")
-                        + " | CustomerId: " + TEXT_GREEN+resultSet.getString("Customer_Id")+TEXT_RESET;
+                        + " | CustomerId: " + TEXT_GREEN + resultSet.getString("Customer_Id") + TEXT_RESET;
                 System.out.println(row);
                 System.out.println("────────────────────────────────────────────────────────────────────");
             }
         } catch (Exception ex) {
-            System.out.println(TEXT_RED+"There was an error, try again."+TEXT_RESET);
+            System.out.println(TEXT_RED + "There was an error, try again." + TEXT_RESET);
         }
     }
 
@@ -131,7 +131,7 @@ public class Customer {
 
 
         while (resultSet.next()) {
-            customerIds=(resultSet.getString("Customer_Id"));
+            customerIds = (resultSet.getString("Customer_Id"));
         }
         System.out.println("Enter the new information you want");
         String birthDate = Dialog.dialogString("Enter Birth Date/Year: ");
@@ -150,7 +150,7 @@ public class Customer {
             statement.setString(7, cardType);
             statement.setString(8, customerIds);
             statement.executeUpdate();
-            System.out.println(TEXT_GREEN+ "Registration was successful! "+TEXT_RESET);
+            System.out.println(TEXT_GREEN + "Registration was successful! " + TEXT_RESET);
         } catch (Exception e) {
             e.printStackTrace();
         }

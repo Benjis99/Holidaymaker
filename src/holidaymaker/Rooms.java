@@ -204,9 +204,9 @@ public class Rooms {
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
-                        + "| Pool: "+ resultSets.getString("P")
+                        + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
-                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        + "| Evening Entertainment: " + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -250,9 +250,9 @@ public class Rooms {
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
-                        + "| Pool: "+ resultSets.getString("P")
+                        + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
-                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        + "| Evening Entertainment: " + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -295,9 +295,9 @@ public class Rooms {
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
-                        + "| Pool: "+ resultSets.getString("P")
+                        + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
-                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        + "| Evening Entertainment: " + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -305,6 +305,7 @@ public class Rooms {
             e.printStackTrace();
         }
     }
+
     public void roomEvenening(Connection connect, PreparedStatement statement, ResultSet resultSets) {
         try {
             System.out.println("Search for empty date:");
@@ -339,9 +340,9 @@ public class Rooms {
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
-                        + "| Pool: "+ resultSets.getString("P")
+                        + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
-                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        + "| Evening Entertainment: " + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -385,7 +386,7 @@ public class Rooms {
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
-                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        + "| Evening Entertainment: " + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -427,9 +428,9 @@ public class Rooms {
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
-                        + "| Pool: "+ resultSets.getString("P")
+                        + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
-                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        + "| Evening Entertainment: " + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -471,9 +472,9 @@ public class Rooms {
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
-                        + "| Pool: "+ resultSets.getString("P")
+                        + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
-                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        + "| Evening Entertainment: " + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -515,9 +516,9 @@ public class Rooms {
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
-                        + "| Pool: "+ resultSets.getString("P")
+                        + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
-                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        + "| Evening Entertainment: " + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -562,7 +563,7 @@ public class Rooms {
                         + resultSets.getString("P") + "| KidsClub: "
                         + resultSets.getString("K")
                         + "| Evening Entertainment: "
-                        + resultSets.getString("E")+ "|\n" +
+                        + resultSets.getString("E") + "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }

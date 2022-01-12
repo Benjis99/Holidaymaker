@@ -45,7 +45,7 @@ public class Booking {
             statement.setString(2, checkinDate);
             statement.setString(3, checkoutDate);
             statement.setInt(4, roomId);
-            System.out.println(TEXT_GREEN+"Successfully booked room! "+TEXT_RESET);
+            System.out.println(TEXT_GREEN + "Successfully booked room! " + TEXT_RESET);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class Booking {
     public void updateBooking(Connection connect, PreparedStatement statement, ResultSet resultSets) {
 
         System.out.println("""
-                    Update a booking:""");
+                Update a booking:""");
         int bookingId = Dialog.dialog("BookingId");
         int customerId = Dialog.dialog("CustomerId: ");
         String checkinDate = Dialog.dialogString("Check-in date m/d/year");
@@ -67,7 +67,7 @@ public class Booking {
             statement.setString(2, checkinDate);
             statement.setString(3, checkoutDate);
             statement.setInt(4, bookingId);
-            System.out.println(TEXT_GREEN+"successfully updated! "+TEXT_RESET);
+            System.out.println(TEXT_GREEN + "successfully updated! " + TEXT_RESET);
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

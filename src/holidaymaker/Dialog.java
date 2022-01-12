@@ -43,7 +43,7 @@ public class Dialog {
         }
     }
 
-    public static String dialogString(String text){
+    public static String dialogString(String text) {
         System.out.println(text);
         return console.nextLine();
     }
