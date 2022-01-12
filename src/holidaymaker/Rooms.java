@@ -38,7 +38,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -79,7 +79,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -120,7 +120,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -161,7 +161,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -202,7 +202,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: "+ resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
@@ -248,7 +248,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: "+ resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
@@ -293,7 +293,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: "+ resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
@@ -337,7 +337,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: "+ resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
@@ -381,7 +381,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: " + resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
@@ -425,7 +425,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: "+ resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
@@ -469,7 +469,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: "+ resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
@@ -513,7 +513,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R")
                         + "| Pool: "+ resultSets.getString("P")
                         + "| KidsClub: " + resultSets.getString("K")
@@ -557,7 +557,7 @@ public class Rooms {
                         " Distance beach: " + resultSets.getString("Beach") + "km\n" +
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
-                        " Price: " + resultSets.getString("Price") + "kr\n" +
+                        " Price: " + resultSets.getString("Price") + "SEK/Night\n" +
                         " Restaurant: " + resultSets.getString("R") + "| Pool: "
                         + resultSets.getString("P") + "| KidsClub: "
                         + resultSets.getString("K")

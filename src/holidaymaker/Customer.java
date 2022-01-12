@@ -17,7 +17,6 @@ public class Customer {
     private String id;
     private String customerIds;
 
-
     public void registerUser(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         String firstName = Dialog.dialogString("Enter first name: ");
         String lastName = Dialog.dialogString("Enter last name: ");
@@ -93,19 +92,13 @@ public class Customer {
                     System.out.println(row);
                     System.out.println("────────────────────────────────────────────────────────────────────");
                     id = resultSet.getString("BookingId");
-
                 }
-
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-
             break;
-
-
         }
     }
-
 
     public void printAllCustomers(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         try {
@@ -115,15 +108,14 @@ public class Customer {
                 System.out.println("There are no registered Customers yet. ");
             }
             while (resultSet.next()) {
-                String row = "First Name: " + resultSet.getString("First_Name")
-                        + " | Last Name: " + resultSet.getString("Last_Name")
+                String row = "Full Name: " + resultSet.getString("First_Name") +" "+ resultSet.getString("Last_Name")
                         + " | Phone Number: " + resultSet.getString("Phone_Number")
                         + " | CustomerId: " + TEXT_GREEN+resultSet.getString("Customer_Id")+TEXT_RESET;
                 System.out.println(row);
                 System.out.println("────────────────────────────────────────────────────────────────────");
             }
         } catch (Exception ex) {
-            System.out.println("There was an error, try again.");
+            System.out.println(TEXT_RED+"There was an error, try again."+TEXT_RESET);
         }
     }
 

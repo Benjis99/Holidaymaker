@@ -98,21 +98,7 @@ public class Menu {
         }
     }
 
-    private void test(Connection connect, PreparedStatement statement, ResultSet resultSet) {
-        boolean optionsIsRunning = true;
-        while (optionsIsRunning) {
-            int userInput = Dialog.dialog("""
-                    Hotels via:
-                    |1| book
-                    |2| Go back""");
 
-            switch (userInput) {
-                case 1 -> booking.mbooking(connect, statement, resultSet);
-                case 2 -> optionsIsRunning = false;
-                default -> System.out.println("Please enter a number between 1-2");
-            }
-        }
-    }
     private void hotelMenu(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         boolean optionsIsRunning = true;
         while (optionsIsRunning) {

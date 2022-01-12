@@ -28,7 +28,7 @@ public class Company {
             statement.setString(5, birthDate);
             statement.setString(6, customerId);
             statement.executeUpdate();
-            System.out.println(firstName + " " + lastName +TEXT_GREEN+ " registered company successfully! "+TEXT_RESET);
+            System.out.println(TEXT_GREEN+ "Registered company successfully! "+TEXT_RESET);
         } catch (Exception e) {
             e.printStackTrace();
         }
