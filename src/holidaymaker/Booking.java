@@ -13,15 +13,21 @@ public class Booking {
 
     public void deleteBooking(Connection connect, PreparedStatement statement, ResultSet resultSet) {
         customer.findCustomer(connect, statement, resultSet);
-        int removeBooking = Dialog.dialog("Select BookingID you want to remove: ");
-        try {
-            statement = connect.prepareStatement("UPDATE Booking SET Customer_Id = ?, Start_Date = ?, End_Date = ? WHERE Booking_Id = ?");
-            statement.setInt(4, removeBooking);
-            statement.executeUpdate();
-            System.out.println(TEXT_GREEN+"Reservation successfully removed!"+TEXT_RESET);
-        } catch (Exception e) {
-            System.out.println(TEXT_RED+"There was a problem, please try again"+TEXT_RESET);
+        int removeBooking = Dialog.dialog("""
+                Do you have an bookingId to remove?
+                |1| Yes |2| No""");
+        if (removeBooking == 1) {
+            int bookId = Dialog.dialog("Select BookingID you want to remove: ");
+            try {
+                statement = connect.prepareStatement("UPDATE Booking SET Customer_Id = ?, Start_Date = ?, End_Date = ? WHERE Booking_Id = ?");
+                statement.setInt(4, bookId);
+                statement.executeUpdate();
+                System.out.println(TEXT_GREEN + "Reservation successfully removed!" + TEXT_RESET);
+            } catch (Exception e) {
+                System.out.println(TEXT_RED + "There was a problem, please try again" + TEXT_RESET);
+            }
         }
+
     }
 
 
@@ -69,57 +75,3 @@ public class Booking {
     }
 
 }
-/*
-  public void findCustomer(Connection connect, PreparedStatement statement, ResultSet resultSet) {
-        while(true) {
-            String firstName = Dialog.dialogString("Enter Customers first name:");
-            String lastName = Dialog.dialogString("Enter Customers last name: ");
-            try {
-                statement = connect.prepareStatement("SELECT BookingId FROM bookingId WHERE Firstname = ? AND Lastname = ?");
-                statement.setString(1, firstName);
-                statement.setString(2, lastName);
-                resultSet = statement.executeQuery();
-                if (!resultSet.isBeforeFirst()) {
-                    System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
-                    findCustomer(connect, statement, resultSet);
-                    break;
-                }
-                while (resultSet.next()) {
-                    String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("BookingId")+TEXT_RESET;
-                    System.out.println(row);
-                    System.out.println("────────────────────────────────────────────────────────────────────");
-                    id = resultSet.getString("BookingId");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-            try {
-                statement = connect.prepareStatement("SELECT * FROM AllBookingsNew WHERE BookingId = ?");
-                statement.setString(1, id);
-                resultSet = statement.executeQuery();
-                if (!resultSet.isBeforeFirst()) {
-                    System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
-                    findCustomer(connect, statement, resultSet);
-                    break;
-                }
-                while (resultSet.next()) {
-                    String row =
-                            "Booking ID: " +resultSet.getString("BookingId")+"\n"+
-                           TEXT_GREEN+ " CustomerId: "+ TEXT_RESET +resultSet.getString("CustomerId") +"\n"+
-                           TEXT_RED+ " Check-in date: "+ TEXT_RESET +resultSet.getString("Check-in")+
-                           TEXT_BLUE+ " Check-out date: " + TEXT_RESET+resultSet.getString("Check-out")+"\n"+
-                           TEXT_CYAN+ " Hotel Name: " + TEXT_RESET+resultSet.getString("Hotel_Name")+
-                           TEXT_PURPLE+ " City: "+ TEXT_RESET +resultSet.getString("City");
-
-                    System.out.println(row);
-                    System.out.println("────────────────────────────────────────────────────────────────────");
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
-            break;
-        }
-    }
-
- */

@@ -78,8 +78,12 @@ public class Customer {
                 resultSet = statement.executeQuery();
                 if (!resultSet.isBeforeFirst()) {
                     System.out.println(TEXT_RED+"No bookings were found"+TEXT_RESET);
-                    findCustomer(connect, statement, resultSet);
-                    break;
+                    int answer = Dialog.dialog("""
+                            Do you want to try with another name?
+                            |1| Yes |2| No""");
+                    if (answer == 1) {
+                        findCustomer(connect, statement, resultSet);
+                    }
                 }
                 while (resultSet.next()) {
                     String row = "Booking ID: " + TEXT_GREEN+resultSet.getString("BookingId")+TEXT_RESET+
