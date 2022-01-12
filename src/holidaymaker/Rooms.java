@@ -27,10 +27,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -68,10 +64,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -109,10 +101,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -150,10 +138,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -191,10 +175,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -237,10 +217,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -282,10 +258,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -327,10 +299,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
@@ -372,10 +340,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -416,10 +380,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -460,10 +420,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -504,10 +460,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -548,10 +500,6 @@ public class Rooms {
             }
             while (resultSets.next()) {
                 String row = "────────────────────────────────────────────────────────────────────" + "\n" +
-                        " Booking ID: " + resultSets.getString("BookingId") + "\n" +
-                        " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
-                        " Check-in Date: " + resultSets.getString("startDate") + "\n" +
-                        " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
