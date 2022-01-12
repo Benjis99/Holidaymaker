@@ -16,7 +16,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND ExtraOption IS 'Full board, breakfast, lunch and dinner' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND ExtraOption IS 'Full board, breakfast, lunch and dinner' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInF);
             statement.setString(2, checkInF);
             statement.setString(3, checkOutF);
@@ -53,7 +53,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND ExtraOption IS 'Extra bed' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND ExtraOption IS 'Extra bed' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInE);
             statement.setString(2, checkInE);
             statement.setString(3, checkOutE);
@@ -90,7 +90,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND ExtraOption IS 'Half board, breakfast and lunch' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND ExtraOption IS 'Half board, breakfast and lunch' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInH);
             statement.setString(2, checkInH);
             statement.setString(3, checkOutH);
@@ -127,7 +127,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND ExtraOption IS 'None' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND ExtraOption IS 'None' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInN);
             statement.setString(2, checkInN);
             statement.setString(3, checkOutN);
@@ -164,7 +164,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND R IS 'true' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND R IS 'true' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInR);
             statement.setString(2, checkInR);
             statement.setString(3, checkOutR);
@@ -205,7 +205,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND K IS 'true' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND K IS 'true' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInK);
             statement.setString(2, checkInK);
             statement.setString(3, checkOutK);
@@ -247,7 +247,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND P IS 'true' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND P IS 'true' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInP);
             statement.setString(2, checkInP);
             statement.setString(3, checkOutP);
@@ -288,7 +288,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND E IS 'true' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND E IS 'true' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInEE);
             statement.setString(2, checkInEE);
             statement.setString(3, checkOutEE);
@@ -329,7 +329,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND HotelName IS 'Bradisson Blu' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND HotelName IS 'Bradisson Blu' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInB);
             statement.setString(2, checkInB);
             statement.setString(3, checkOutB);
@@ -369,7 +369,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND HotelName IS 'Quality Hotel' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND HotelName IS 'Quality Hotel' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInQ);
             statement.setString(2, checkInQ);
             statement.setString(3, checkOutQ);
@@ -409,7 +409,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND HotelName IS 'Gothia Towers' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND HotelName IS 'Gothia Towers' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInG);
             statement.setString(2, checkInG);
             statement.setString(3, checkOutG);
@@ -449,7 +449,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND HotelName IS 'Comfort Hotel' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND HotelName IS 'Comfort Hotel' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInC);
             statement.setString(2, checkInC);
             statement.setString(3, checkOutC);
@@ -489,7 +489,7 @@ public class Rooms {
                     "AND NOT (endDate BETWEEN ? AND ?)\n" +
                     "AND HotelName IS 'Clarion Hotel' OR startDate IS NULL AND endDate IS NULL\n" +
                     "AND HotelName IS 'Clarion Hotel' \n" +
-                    "GROUP BY RoomId");
+                    "GROUP BY RoomId ORDER BY Price");
             statement.setString(1, checkInCH);
             statement.setString(2, checkInCH);
             statement.setString(3, checkOutCH);
