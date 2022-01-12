@@ -198,10 +198,10 @@ public class Menu {
         while (isRunning) {
             int beginSearchOrExit = Dialog.dialog("""
                     Empty rooms with:
-                    |1| full board
-                    |2| half board
-                    |3| extra bed
-                    |4| no extras
+                    |1| Full board
+                    |2| Half board
+                    |3| Extra bed
+                    |4| No extras
                     |5| Make booking
                     |6| Go back""");
             switch (beginSearchOrExit) {

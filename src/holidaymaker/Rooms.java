@@ -11,7 +11,12 @@ public class Rooms {
             System.out.println("Search for empty date:");
             String checkInF = Dialog.dialogString("Check-in date m/d/year");
             String checkOutF = Dialog.dialogString("Check-out date m/d/year");
-            statement = connect.prepareStatement("SELECT * FROM EmptyFullboardQ WHERE Extras_Id IS 2 AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND Extras_Id = 2 ORDER BY Price");
+            statement = connect.prepareStatement("SELECT * FROM hotels1 \n" +
+                    "WHERE RoomId NOT IN (SELECT RoomId FROM hotels1 WHERE startDate BETWEEN ? AND ?)\n" +
+                    "AND NOT (endDate BETWEEN ? AND ?)\n" +
+                    "AND ExtraOption IS 'Full board, breakfast, lunch and dinner' OR startDate IS NULL AND endDate IS NULL\n" +
+                    "AND ExtraOption IS 'Full board, breakfast, lunch and dinner' \n" +
+                    "GROUP BY RoomId");
             statement.setString(1, checkInF);
             statement.setString(2, checkInF);
             statement.setString(3, checkOutF);
@@ -26,7 +31,7 @@ public class Rooms {
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
                         " Check-in Date: " + resultSets.getString("startDate") + "\n" +
                         " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
-                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -47,7 +52,12 @@ public class Rooms {
             System.out.println("Search for empty date:");
             String checkInE = Dialog.dialogString("Check-in date m/d/year");
             String checkOutE = Dialog.dialogString("Check-out date m/d/year");
-            statement = connect.prepareStatement("SELECT * FROM EmptyFullboardQ WHERE Extras_Id IS 1 AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND Extras_Id = 1 ORDER BY Price");
+            statement = connect.prepareStatement("SELECT * FROM hotels1 \n" +
+                    "WHERE RoomId NOT IN (SELECT RoomId FROM hotels1 WHERE startDate BETWEEN ? AND ?)\n" +
+                    "AND NOT (endDate BETWEEN ? AND ?)\n" +
+                    "AND ExtraOption IS 'Extra bed' OR startDate IS NULL AND endDate IS NULL\n" +
+                    "AND ExtraOption IS 'Extra bed' \n" +
+                    "GROUP BY RoomId");
             statement.setString(1, checkInE);
             statement.setString(2, checkInE);
             statement.setString(3, checkOutE);
@@ -62,7 +72,7 @@ public class Rooms {
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
                         " Check-in Date: " + resultSets.getString("startDate") + "\n" +
                         " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
-                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -83,7 +93,12 @@ public class Rooms {
             System.out.println("Search for empty date:");
             String checkInH = Dialog.dialogString("Check-in date m/d/year");
             String checkOutH = Dialog.dialogString("Check-out date m/d/year");
-            statement = connect.prepareStatement("SELECT * FROM EmptyFullboardQ WHERE Extras_Id IS 3 AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND Extras_Id = 3 ORDER BY Price");
+            statement = connect.prepareStatement("SELECT * FROM hotels1 \n" +
+                    "WHERE RoomId NOT IN (SELECT RoomId FROM hotels1 WHERE startDate BETWEEN ? AND ?)\n" +
+                    "AND NOT (endDate BETWEEN ? AND ?)\n" +
+                    "AND ExtraOption IS 'Half board, breakfast and lunch' OR startDate IS NULL AND endDate IS NULL\n" +
+                    "AND ExtraOption IS 'Half board, breakfast and lunch' \n" +
+                    "GROUP BY RoomId");
             statement.setString(1, checkInH);
             statement.setString(2, checkInH);
             statement.setString(3, checkOutH);
@@ -98,7 +113,7 @@ public class Rooms {
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
                         " Check-in Date: " + resultSets.getString("startDate") + "\n" +
                         " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
-                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -119,7 +134,12 @@ public class Rooms {
             System.out.println("Search for empty date:");
             String checkInN = Dialog.dialogString("Check-in date m/d/year");
             String checkOutN = Dialog.dialogString("Check-out date m/d/year");
-            statement = connect.prepareStatement("SELECT * FROM EmptyFullboardQ WHERE Extras_Id IS 4 AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND Extras_Id = 4 ORDER BY Price");
+            statement = connect.prepareStatement("SELECT * FROM hotels1 \n" +
+                    "WHERE RoomId NOT IN (SELECT RoomId FROM hotels1 WHERE startDate BETWEEN ? AND ?)\n" +
+                    "AND NOT (endDate BETWEEN ? AND ?)\n" +
+                    "AND ExtraOption IS 'None' OR startDate IS NULL AND endDate IS NULL\n" +
+                    "AND ExtraOption IS 'None' \n" +
+                    "GROUP BY RoomId");
             statement.setString(1, checkInN);
             statement.setString(2, checkInN);
             statement.setString(3, checkOutN);
@@ -134,7 +154,7 @@ public class Rooms {
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
                         " Check-in Date: " + resultSets.getString("startDate") + "\n" +
                         " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
-                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -155,7 +175,12 @@ public class Rooms {
             System.out.println("Search for empty date:");
             String checkInR = Dialog.dialogString("Check-in date m/d/year");
             String checkOutR = Dialog.dialogString("Check-out date m/d/year");
-            statement = connect.prepareStatement("SELECT * FROM PoolQ WHERE R IS 'true' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND R IS 'true' ORDER BY Price");
+            statement = connect.prepareStatement("SELECT * FROM hotels1 \n" +
+                    "WHERE RoomId NOT IN (SELECT RoomId FROM hotels1 WHERE startDate BETWEEN ? AND ?)\n" +
+                    "AND NOT (endDate BETWEEN ? AND ?)\n" +
+                    "AND R IS 'true' OR startDate IS NULL AND endDate IS NULL\n" +
+                    "AND R IS 'true' \n" +
+                    "GROUP BY RoomId");
             statement.setString(1, checkInR);
             statement.setString(2, checkInR);
             statement.setString(3, checkOutR);
@@ -170,7 +195,7 @@ public class Rooms {
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
                         " Check-in Date: " + resultSets.getString("startDate") + "\n" +
                         " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
-                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -178,7 +203,10 @@ public class Rooms {
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "kr\n" +
-                        " Restaurant: " + resultSets.getString("R") + "| Pool: "+ resultSets.getString("P") + "| KidsClub: " + resultSets.getString("K") + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        " Restaurant: " + resultSets.getString("R")
+                        + "| Pool: "+ resultSets.getString("P")
+                        + "| KidsClub: " + resultSets.getString("K")
+                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -192,7 +220,12 @@ public class Rooms {
             System.out.println("Search for empty date:");
             String checkInK = Dialog.dialogString("Check-in date m/d/year");
             String checkOutK = Dialog.dialogString("Check-out date m/d/year");
-            statement = connect.prepareStatement("SELECT * FROM PoolQ WHERE K IS 'true' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND K IS 'true' ORDER BY Price");
+            statement = connect.prepareStatement("SELECT * FROM hotels1 \n" +
+                    "WHERE RoomId NOT IN (SELECT RoomId FROM hotels1 WHERE startDate BETWEEN ? AND ?)\n" +
+                    "AND NOT (endDate BETWEEN ? AND ?)\n" +
+                    "AND K IS 'true' OR startDate IS NULL AND endDate IS NULL\n" +
+                    "AND K IS 'true' \n" +
+                    "GROUP BY RoomId");
             statement.setString(1, checkInK);
             statement.setString(2, checkInK);
             statement.setString(3, checkOutK);
@@ -208,7 +241,7 @@ public class Rooms {
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
                         " Check-in Date: " + resultSets.getString("startDate") + "\n" +
                         " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
-                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -216,7 +249,10 @@ public class Rooms {
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "kr\n" +
-                        " Restaurant: " + resultSets.getString("R") + "| Pool: "+ resultSets.getString("P") + "| KidsClub: " + resultSets.getString("K") + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        " Restaurant: " + resultSets.getString("R")
+                        + "| Pool: "+ resultSets.getString("P")
+                        + "| KidsClub: " + resultSets.getString("K")
+                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -230,7 +266,12 @@ public class Rooms {
             System.out.println("Search for empty date:");
             String checkInP = Dialog.dialogString("Check-in date m/d/year");
             String checkOutP = Dialog.dialogString("Check-out date m/d/year");
-            statement = connect.prepareStatement("SELECT * FROM PoolQ WHERE P IS 'true' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND P IS 'true' ORDER BY Price");
+            statement = connect.prepareStatement("SELECT * FROM hotels1 \n" +
+                    "WHERE RoomId NOT IN (SELECT RoomId FROM hotels1 WHERE startDate BETWEEN ? AND ?)\n" +
+                    "AND NOT (endDate BETWEEN ? AND ?)\n" +
+                    "AND P IS 'true' OR startDate IS NULL AND endDate IS NULL\n" +
+                    "AND P IS 'true' \n" +
+                    "GROUP BY RoomId");
             statement.setString(1, checkInP);
             statement.setString(2, checkInP);
             statement.setString(3, checkOutP);
@@ -245,7 +286,7 @@ public class Rooms {
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
                         " Check-in Date: " + resultSets.getString("startDate") + "\n" +
                         " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
-                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -253,7 +294,10 @@ public class Rooms {
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "kr\n" +
-                        " Restaurant: " + resultSets.getString("R") + "| Pool: "+ resultSets.getString("P") + "| KidsClub: " + resultSets.getString("K") + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        " Restaurant: " + resultSets.getString("R")
+                        + "| Pool: "+ resultSets.getString("P")
+                        + "| KidsClub: " + resultSets.getString("K")
+                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
@@ -266,7 +310,12 @@ public class Rooms {
             System.out.println("Search for empty date:");
             String checkInEE = Dialog.dialogString("Check-in date m/d/year");
             String checkOutEE = Dialog.dialogString("Check-out date m/d/year");
-            statement = connect.prepareStatement("SELECT * FROM PoolQ WHERE E IS 'true' AND NOT startDate BETWEEN ? AND ? AND NOT endDate BETWEEN ? AND ? OR startDate IS NULL AND endDate IS NULL AND E IS 'true' ORDER BY Price");
+            statement = connect.prepareStatement("SELECT * FROM hotels1 \n" +
+                    "WHERE RoomId NOT IN (SELECT RoomId FROM hotels1 WHERE startDate BETWEEN ? AND ?)\n" +
+                    "AND NOT (endDate BETWEEN ? AND ?)\n" +
+                    "AND E IS 'true' OR startDate IS NULL AND endDate IS NULL\n" +
+                    "AND E IS 'true' \n" +
+                    "GROUP BY RoomId");
             statement.setString(1, checkInEE);
             statement.setString(2, checkInEE);
             statement.setString(3, checkOutEE);
@@ -281,7 +330,7 @@ public class Rooms {
                         " CustomerId: " + resultSets.getString("CustomerId") + "\n" +
                         " Check-in Date: " + resultSets.getString("startDate") + "\n" +
                         " Check-Out Date: " + resultSets.getString("endDate") + "\n" +
-                        " RoomId: " + resultSets.getString("RoomNumber") + "\n" +
+                        " RoomId: " + resultSets.getString("RoomId") + "\n" +
                         " Hotel Name: " + resultSets.getString("HotelName") + "\n" +
                         " City: " + resultSets.getString("City") + "\n" +
                         " Extras: " + resultSets.getString("ExtraOption") + "\n" +
@@ -289,7 +338,10 @@ public class Rooms {
                         " Distance city: " + resultSets.getString("CityDS") + "km\n" +
                         " Bed-Size: " + resultSets.getString("BedSize") + "\n" +
                         " Price: " + resultSets.getString("Price") + "kr\n" +
-                        " Restaurant: " + resultSets.getString("R") + "| Pool: "+ resultSets.getString("P") + "| KidsClub: " + resultSets.getString("K") + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
+                        " Restaurant: " + resultSets.getString("R")
+                        + "| Pool: "+ resultSets.getString("P")
+                        + "| KidsClub: " + resultSets.getString("K")
+                        + "| Evening Entertainment: " + resultSets.getString("E")+ "|\n" +
                         "────────────────────────────────────────────────────────────────────";
                 System.out.println(row);
             }
